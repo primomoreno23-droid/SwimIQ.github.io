@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SwimIQ Development Blog — weekly updates on building a swim-coach management platform." />
+  <title>SwimIQ Dev Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Site Header ─────────────────────────────────── -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">
+        <div class="site-header__logo-mark">S</div>
+        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
+      </a>
+      <nav>
+        <ul class="site-header__nav">
+          <li><a href="index.html">All Posts</a></li>
+          <li><a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Page Content ────────────────────────────────── -->
+  <main class="page">
+
+    <!-- Hero -->
+    <section class="hero">
+      <span class="hero__label">Development Log</span>
+      <h1 class="hero__title">Building SwimIQ</h1>
+      <p class="hero__description">
+        A running record of how we're designing and building SwimIQ — a web platform
+        for swim coaches to manage practices, lifts, meets, and team analytics.
+        New entries are posted every week by team members as the project evolves.
+      </p>
+    </section>
+
+    <!-- Post list -->
+    <section class="post-list" aria-label="Blog posts">
+
+      <!-- Week 4 post -->
+      <a class="post-card" href="posts/week4-project-overview.html">
+        <div class="post-card__meta">
+          <span class="post-card__week-badge">Week 4</span>
+          <span class="post-card__date">February 24, 2025</span>
+          <span class="post-card__author-badge">Team</span>
+        </div>
+        <h2 class="post-card__title">Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far</h2>
+        <p class="post-card__excerpt">
+          We&rsquo;re four weeks into SwimIQ. This post walks through every feature
+          currently in the app &mdash; from the coach dashboard and event forms to the
+          full calendar view and the Python analytics API &mdash; and explains the
+          technical decisions that got us here.
+        </p>
+        <span class="post-card__read-more">Read post &rarr;</span>
+      </a>
+
+      <!--
+        ──────────────────────────────────────────────────────────
+        HOW TO ADD A NEW POST
+        ──────────────────────────────────────────────────────────
+        1. Duplicate posts/week4-project-overview.html
+        2. Rename it (e.g. posts/week5-feature-name.html)
+        3. Edit the content, date, author, and week badge inside
+        4. Copy the <a class="post-card"> block above this comment
+        5. Update href, badges, title, and excerpt
+        6. Paste the new card ABOVE the previous ones (newest first)
+        ──────────────────────────────────────────────────────────
+      -->
+
+    </section>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>
+      SwimIQ &mdash; a senior capstone project &bull;
+      <a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">View on GitHub</a>
+    </p>
+  </footer>
+
+</body>
+</html>
