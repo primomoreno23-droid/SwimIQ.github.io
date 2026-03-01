@@ -39,7 +39,7 @@
       <h1 class="article__title">Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far</h1>
 
       <p class="article__byline">
-        <strong>Authors:</strong> The SwimIQ Team
+        <strong>Author:</strong> Primo Moreno
       </p>
 
       <!-- ── Screenshot placeholder ─────────────────── -->
@@ -50,12 +50,13 @@
            <img src="../assets/dashboard.png" alt="SwimIQ coach dashboard" />
       -->
       <figure>
-        <div class="screenshot-placeholder">
+        <img src = "../assets/SwimIQ_Dashboard.png" alt="SwimIQ coach dashboard" />
+        <!-- <div class="screenshot-placeholder">
           <span class="screenshot-placeholder__icon">🖥</span>
           <span class="screenshot-placeholder__label">SwimIQ Dashboard Screenshot</span>
           <span class="screenshot-placeholder__hint">Replace with: &lt;img src="../assets/dashboard.png" /&gt;</span>
-        </div>
-        <figcaption>The SwimIQ coach dashboard &mdash; home view showing upcoming events, a mini-calendar, and quick-action shortcuts.</figcaption>
+        </div> -->
+        <!-- <figcaption><b>SwimIQ coach dashboard</b> &mdash; home view showing upcoming events, a mini-calendar, and quick-action shortcuts.</figcaption> -->
       </figure>
 
       <!-- ── Body ───────────────────────────────────── -->
@@ -64,7 +65,7 @@
         <h2>What is SwimIQ?</h2>
         <p>
           SwimIQ is a web application built for swim coaches who want a single, organized place to plan
-          practices, schedule strength training sessions, coordinate meets, and track swimmer
+          practices, schedule lifting sessions, coordinate meets, and track swimmer
           performance over time. Instead of juggling spreadsheets, text messages, and paper notebooks,
           a coach can open SwimIQ, see everything coming up this week, add a new event in seconds, and
           pull up analytics to see how their team is trending. The current version is a full-stack
@@ -74,8 +75,8 @@
 
         <h2>Feature: Coach Dashboard</h2>
         <p>
-          The dashboard is the first screen a coach sees. It is designed to answer the question
-          <em>&ldquo;What do I need to know right now?&rdquo;</em> without any extra clicks.
+          The dashboard is specific for a coach and contains only the information they need to see right now about upcoming events.
+          As well as a high-level calendar overview, it has three main components:
         </p>
         <ul>
           <li>
@@ -94,18 +95,14 @@
           </li>
         </ul>
         <p>
-          The layout uses a persistent left sidebar for global navigation and a sticky top bar that
-          shows breadcrumb context for the current page. The sidebar stays fixed while the main content
+          The layout uses a persistent left sidebar for global navigation and a sticky top bar that 
+          maintains context for the current page. The sidebar stays fixed while the main content
           area scrolls independently.
         </p>
 
         <figure>
-          <div class="screenshot-placeholder">
-            <span class="screenshot-placeholder__icon">📅</span>
-            <span class="screenshot-placeholder__label">Mini-Calendar + Upcoming Events</span>
-            <span class="screenshot-placeholder__hint">Replace with: &lt;img src="../assets/mini-calendar.png" /&gt;</span>
-          </div>
-          <figcaption>Mini-calendar (left sidebar) and Upcoming Events widget, driven by live event data.</figcaption>
+          <img src="../assets/SwimIQ_Quick_Actions.png" alt="SwimIQ quick actions menu" />
+          <!-- <figcaption>Mini-calendar (left sidebar) and Upcoming Events widget, driven by live event data.</figcaption> -->
         </figure>
 
         <h2>Feature: Add Event</h2>
@@ -149,7 +146,7 @@
           The <code>/calendar</code> route renders a standard monthly grid with navigation arrows
           for month-to-month browsing and a &ldquo;Today&rdquo; shortcut button. Scheduled events
           appear as color-coded pills inside each day cell (teal for practices, orange for lifts,
-          red for meets), with a &ldquo;+N more&rdquo; overflow count when a day has more than three
+          red for meets), with a &ldquo;+X more&rdquo; overflow count when a day has more than three
           events.
         </p>
         <p>
@@ -161,12 +158,8 @@
         </p>
 
         <figure>
-          <div class="screenshot-placeholder">
-            <span class="screenshot-placeholder__icon">🗓</span>
-            <span class="screenshot-placeholder__label">Full Calendar View</span>
-            <span class="screenshot-placeholder__hint">Replace with: &lt;img src="../assets/calendar.png" /&gt;</span>
-          </div>
-          <figcaption>Full calendar page with monthly grid and day-detail panel.</figcaption>
+          <img src="../assets/SwimIQ_Calendar.png" alt="SwimIQ full calendar view" />
+          <!-- <figcaption>Full calendar page with monthly grid and day-detail panel.</figcaption> -->
         </figure>
 
         <h2>Feature: Analytics API</h2>
@@ -222,16 +215,6 @@
           (pandas, NumPy, SciPy, statsmodels) handles all the data wrangling and statistical
           modeling without pulling in a heavier ML framework.
         </p>
-        <p>
-          Both services start with a single command from the project root thanks to
-          <strong>concurrently</strong>:
-        </p>
-        <pre><code>yarn dev</code></pre>
-        <p>
-          This boots the Vite dev server on port <code>5173</code> and the uvicorn API server on
-          port <code>8000</code> side by side in the same terminal, with color-coded, labeled output
-          for each process. One <kbd>Ctrl+C</kbd> stops both.
-        </p>
 
         <h2>What&rsquo;s Next</h2>
         <p>
@@ -257,9 +240,7 @@
           </li>
         </ul>
         <p>
-          Check back here each week as we ship these features. Posts will include walkthroughs of
-          key implementation decisions, challenges we ran into, and screen recordings or
-          screenshots of the new functionality in action.
+          Check back here each week as we ship these features.
         </p>
 
       </div><!-- /.article__body -->
