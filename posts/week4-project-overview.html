@@ -1,259 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Week 4 SwimIQ dev log: a full walkthrough of every feature currently in the app." />
-  <title>Week 4: Project Overview &mdash; SwimIQ Dev Blog</title>
-  <link rel="stylesheet" href="../style.css" />
-</head>
-<body>
-
-  <!-- ── Site Header ─────────────────────────────────── -->
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="../index.html">
-        <div class="site-header__logo-mark">S</div>
-        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
-      </a>
-      <nav>
-        <ul class="site-header__nav">
-          <li><a href="../index.html">All Posts</a></li>
-          <li><a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ── Article ─────────────────────────────────────── -->
-  <main class="page">
-    <article class="article">
-
-      <a class="article__back" href="../index.html">Back to all posts</a>
-
-      <div class="article__meta">
-        <span class="article__week-badge">Week 4</span>
-        <span class="article__date">February 24, 2026</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Week 4 SwimIQ dev log: a full walkthrough of every feature currently in the app."
+    />
+    <title>Week 4: Project Overview &mdash; SwimIQ Dev Blog</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- ── Site Header ─────────────────────────────────── -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__logo" href="../index.html">
+          <div class="site-header__logo-mark">S</div>
+          <span class="site-header__logo-text"
+            >SwimIQ <span>Dev Blog</span></span
+          >
+        </a>
+        <nav>
+          <ul class="site-header__nav">
+            <li><a href="../index.html">All Posts</a></li>
+            <li>
+              <a
+                href="https://github.com/primodemus/SwimIQ"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <h1 class="article__title">Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far</h1>
+    <!-- ── Article ─────────────────────────────────────── -->
+    <main class="page">
+      <article class="article">
+        <a class="article__back" href="../index.html">Back to all posts</a>
 
-      <p class="article__byline">
-        <strong>Author:</strong> Primo Moreno
-      </p>
+        <div class="article__meta">
+          <span class="article__week-badge">Week 4</span>
+          <span class="article__date">February 24, 2026</span>
+        </div>
 
-      <!-- ── Screenshot placeholder ─────────────────── -->
-      <!--
+        <h1 class="article__title">
+          Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far
+        </h1>
+
+        <p class="article__byline"><strong>Author:</strong> Primo Moreno</p>
+
+        <!-- ── Screenshot placeholder ─────────────────── -->
+        <!--
         TO ADD A SCREENSHOT:
         1. Save your image to dev_blog/assets/ (e.g. dashboard.png)
         2. Replace the <div class="screenshot-placeholder"> block below with:
            <img src="../assets/dashboard.png" alt="SwimIQ coach dashboard" />
       -->
-      <figure>
-        <img src = "../assets/SwimIQ_Dashboard.png" alt="SwimIQ coach dashboard" />
-        <!-- <div class="screenshot-placeholder">
+        <figure>
+          <img
+            src="../assets/SwimIQ_Dashboard.png"
+            alt="SwimIQ coach dashboard"
+          />
+          <!-- <div class="screenshot-placeholder">
           <span class="screenshot-placeholder__icon">🖥</span>
           <span class="screenshot-placeholder__label">SwimIQ Dashboard Screenshot</span>
           <span class="screenshot-placeholder__hint">Replace with: &lt;img src="../assets/dashboard.png" /&gt;</span>
         </div> -->
-        <!-- <figcaption><b>SwimIQ coach dashboard</b> &mdash; home view showing upcoming events, a mini-calendar, and quick-action shortcuts.</figcaption> -->
-      </figure>
-
-      <!-- ── Body ───────────────────────────────────── -->
-      <div class="article__body">
-
-        <h2>What is SwimIQ?</h2>
-        <p>
-          SwimIQ is a web application built for swim coaches who want a single, organized place to plan
-          practices, schedule lifting sessions, coordinate meets, and track swimmer
-          performance over time. Instead of juggling spreadsheets, text messages, and paper notebooks,
-          a coach can open SwimIQ, see everything coming up this week, add a new event in seconds, and
-          pull up analytics to see how their team is trending. The current version is a full-stack
-          application: a React single-page app for the front end and a Python FastAPI service for the
-          data and analytics back end.
-        </p>
-
-        <h2>Feature: Coach Dashboard</h2>
-        <p>
-          The dashboard is specific for a coach and contains only the information they need to see right now about upcoming events.
-          As well as a high-level calendar overview, it has three main components:
-        </p>
-        <ul>
-          <li>
-            <strong>Upcoming Events widget</strong> &mdash; shows the next seven scheduled events
-            (practices, lifts, and meets), sorted by date. Each row is clickable and takes the coach
-            directly to the edit form for that event.
-          </li>
-          <li>
-            <strong>Mini-Calendar</strong> &mdash; a compact monthly calendar in the sidebar that
-            highlights days with scheduled events. Clicking any highlighted day navigates directly to
-            the full calendar view filtered to that date.
-          </li>
-          <li>
-            <strong>Quick Actions</strong> &mdash; one-click shortcuts for the most common tasks
-            (adding a practice, a lift, or a meet), so coaches never have to hunt through menus.
-          </li>
-        </ul>
-        <p>
-          The layout uses a persistent left sidebar for global navigation and a sticky top bar that 
-          maintains context for the current page. The sidebar stays fixed while the main content
-          area scrolls independently.
-        </p>
-
-        <figure>
-          <img src="../assets/SwimIQ_Quick_Actions.png" alt="SwimIQ quick actions menu" />
-          <!-- <figcaption>Mini-calendar (left sidebar) and Upcoming Events widget, driven by live event data.</figcaption> -->
+          <!-- <figcaption><b>SwimIQ coach dashboard</b> &mdash; home view showing upcoming events, a mini-calendar, and quick-action shortcuts.</figcaption> -->
         </figure>
 
-        <h2>Feature: Add Event</h2>
-        <p>
-          Clicking &ldquo;Add Event&rdquo; opens a type-selection screen with three options. Each
-          option routes to a purpose-built form.
-        </p>
+        <!-- ── Body ───────────────────────────────────── -->
+        <div class="article__body">
+          <h2>What is SwimIQ?</h2>
+          <p>
+            SwimIQ is a web application built for swim coaches who want a
+            single, organized place to plan practices, schedule lifting
+            sessions, coordinate meets, and track swimmer performance over time.
+            Instead of juggling spreadsheets, text messages, and paper
+            notebooks, a coach can open SwimIQ, see everything coming up this
+            week, add a new event in seconds, and pull up analytics to see how
+            their team is trending. The current version is a full-stack
+            application: a React single-page app for the front end and a Python
+            FastAPI service for the data and analytics back end.
+          </p>
 
-        <h3>Practice</h3>
-        <p>
-          The practice form lets a coach set a date and time, write a description, and build a
-          multi-group workout plan. A coach can select from pre-loaded workout presets (stored in
-          application state) or write custom sets for each group. Each group block can be added or
-          removed dynamically.
-        </p>
+          <h2>Feature: Coach Dashboard</h2>
+          <p>
+            The dashboard is specific for a coach and contains only the
+            information they need to see right now about upcoming events. As
+            well as a high-level calendar overview, it has three main
+            components:
+          </p>
+          <ul>
+            <li>
+              <strong>Upcoming Events widget</strong> &mdash; shows the next
+              seven scheduled events (practices, lifts, and meets), sorted by
+              date. Each row is clickable and takes the coach directly to the
+              edit form for that event.
+            </li>
+            <li>
+              <strong>Mini-Calendar</strong> &mdash; a compact monthly calendar
+              in the sidebar that highlights days with scheduled events.
+              Clicking any highlighted day navigates directly to the full
+              calendar view filtered to that date.
+            </li>
+            <li>
+              <strong>Quick Actions</strong> &mdash; one-click shortcuts for the
+              most common tasks (adding a practice, a lift, or a meet), so
+              coaches never have to hunt through menus.
+            </li>
+          </ul>
+          <p>
+            The layout uses a persistent left sidebar for global navigation and
+            a sticky top bar that maintains context for the current page. The
+            sidebar stays fixed while the main content area scrolls
+            independently.
+          </p>
 
-        <h3>Lift (Strength Training)</h3>
-        <p>
-          The lift form mirrors the practice form but is tailored for dryland and weight-room
-          sessions. It includes lift-specific preset plans and the same flexible group-block
-          structure, so a coach can write different workouts for different training groups in one
-          session.
-        </p>
+          <figure class="img-md">
+            <img
+              src="../assets/SwimIQ_Quick_Actions.png"
+              alt="SwimIQ quick actions menu"
+            />
+            <!-- <figcaption>Mini-calendar (left sidebar) and Upcoming Events widget, driven by live event data.</figcaption> -->
+          </figure>
 
-        <h3>Meet</h3>
-        <p>
-          The meet form handles swim competition scheduling. Coaches enter a date, a meet name,
-          and opposing teams (added as removable tags). A free-text &ldquo;meet entries&rdquo; field
-          holds heat sheet or event entry notes, and a general notes section rounds out the form.
-        </p>
+          <h2>Feature: Add Event</h2>
+          <p>
+            Clicking &ldquo;Add Event&rdquo; opens a type-selection screen with
+            three options. Each option routes to a purpose-built form.
+          </p>
 
-        <p>
-          Every form doubles as an edit form: navigating to
-          <code>/add-event/practice/:id</code> (or the equivalent for lift/meet) pre-fills all
-          fields from the saved event. This is wired through the global
-          <code>EventsContext</code> which is accessible anywhere in the React tree.
-        </p>
+          <h3>Practice</h3>
+          <p>
+            The practice form lets a coach set a date and time, write a
+            description, and build a multi-group workout plan. A coach can
+            select from pre-loaded workout presets (stored in application state)
+            or write custom sets for each group. Each group block can be added
+            or removed dynamically.
+          </p>
 
-        <h2>Feature: Full Calendar</h2>
-        <p>
-          The <code>/calendar</code> route renders a standard monthly grid with navigation arrows
-          for month-to-month browsing and a &ldquo;Today&rdquo; shortcut button. Scheduled events
-          appear as color-coded pills inside each day cell (teal for practices, orange for lifts,
-          red for meets), with a &ldquo;+X more&rdquo; overflow count when a day has more than three
-          events.
-        </p>
-        <p>
-          Clicking a day opens a detail panel to the right of the grid that lists every event for
-          that day. Each event in the panel is a button that navigates to the corresponding edit
-          form. The selected date is persisted in the URL as a <code>?date=YYYY-MM-DD</code> query
-          parameter, so navigating back from an edit form returns to the same day view without any
-          extra state management.
-        </p>
+          <h3>Lift (Strength Training)</h3>
+          <p>
+            The lift form mirrors the practice form but is tailored for dryland
+            and weight-room sessions. It includes lift-specific preset plans and
+            the same flexible group-block structure, so a coach can write
+            different workouts for different training groups in one session.
+          </p>
 
-        <figure>
-          <img src="../assets/SwimIQ_Calendar.png" alt="SwimIQ full calendar view" />
-          <!-- <figcaption>Full calendar page with monthly grid and day-detail panel.</figcaption> -->
-        </figure>
+          <h3>Meet</h3>
+          <p>
+            The meet form handles swim competition scheduling. Coaches enter a
+            date, a meet name, and opposing teams (added as removable tags). A
+            free-text &ldquo;meet entries&rdquo; field holds heat sheet or event
+            entry notes, and a general notes section rounds out the form.
+          </p>
 
-        <h2>Feature: Analytics API</h2>
-        <p>
-          The back end is a Python FastAPI service that exposes a REST API for swim performance
-          analytics. Built on <strong>pandas</strong>, <strong>NumPy</strong>,
-          <strong>SciPy</strong>, and <strong>statsmodels</strong>, it supports:
-        </p>
-        <ul>
-          <li>Importing swimmer time data from a flat CSV structure</li>
-          <li>Searching by swimmer name or school across a dataset</li>
-          <li>Multi-swimmer comparison across different teams</li>
-          <li>
-            Time-series trend analysis and predictive modeling using an
-            <strong>ARIMA</strong> model &mdash; so coaches can see projected future performance
-            based on historical results
-          </li>
-        </ul>
-        <p>
-          The analytics endpoints are designed to be consumed by the React front end. The next
-          phase of the project will wire the prediction output into the dashboard and individual
-          swimmer profile pages.
-        </p>
+          <p>
+            Every form doubles as an edit form: navigating to
+            <code>/add-event/practice/:id</code> (or the equivalent for
+            lift/meet) pre-fills all fields from the saved event. This is wired
+            through the global <code>EventsContext</code> which is accessible
+            anywhere in the React tree.
+          </p>
 
-        <h2>Under the Hood</h2>
+          <h2>Feature: Full Calendar</h2>
+          <p>
+            The <code>/calendar</code> route renders a standard monthly grid
+            with navigation arrows for month-to-month browsing and a
+            &ldquo;Today&rdquo; shortcut button. Scheduled events appear as
+            color-coded pills inside each day cell (teal for practices, orange
+            for lifts, red for meets), with a &ldquo;+X more&rdquo; overflow
+            count when a day has more than three events.
+          </p>
+          <p>
+            Clicking a day opens a detail panel to the right of the grid that
+            lists every event for that day. Each event in the panel is a button
+            that navigates to the corresponding edit form. The selected date is
+            persisted in the URL as a <code>?date=YYYY-MM-DD</code> query
+            parameter, so navigating back from an edit form returns to the same
+            day view without any extra state management.
+          </p>
 
-        <div class="tech-tags">
-          <span class="tech-tag">React 19</span>
-          <span class="tech-tag">Vite 8 (beta)</span>
-          <span class="tech-tag">React Router DOM v7</span>
-          <span class="tech-tag">Recharts</span>
-          <span class="tech-tag">Plain CSS</span>
-          <span class="tech-tag">FastAPI</span>
-          <span class="tech-tag">Python 3.12</span>
-          <span class="tech-tag">pandas</span>
-          <span class="tech-tag">statsmodels</span>
-          <span class="tech-tag">Yarn</span>
-          <span class="tech-tag">concurrently</span>
+          <figure class="img-md">
+            <img
+              src="../assets/SwimIQ_Calendar.png"
+              alt="SwimIQ full calendar view"
+            />
+            <!-- <figcaption>Full calendar page with monthly grid and day-detail panel.</figcaption> -->
+          </figure>
+
+          <h2>Feature: Analytics API</h2>
+          <p>
+            The back end is a Python FastAPI service that exposes a REST API for
+            swim performance analytics. Built on <strong>pandas</strong>,
+            <strong>NumPy</strong>, <strong>SciPy</strong>, and
+            <strong>statsmodels</strong>, it supports:
+          </p>
+          <ul>
+            <li>Importing swimmer time data from a flat CSV structure</li>
+            <li>Searching by swimmer name or school across a dataset</li>
+            <li>Multi-swimmer comparison across different teams</li>
+            <li>
+              Time-series trend analysis and predictive modeling using an
+              <strong>ARIMA</strong> model &mdash; so coaches can see projected
+              future performance based on historical results
+            </li>
+          </ul>
+          <p>
+            The analytics endpoints are designed to be consumed by the React
+            front end. The next phase of the project will wire the prediction
+            output into the dashboard and individual swimmer profile pages.
+          </p>
+
+          <h2>Under the Hood</h2>
+
+          <div class="tech-tags">
+            <span class="tech-tag">React 19</span>
+            <span class="tech-tag">Vite 8 (beta)</span>
+            <span class="tech-tag">React Router DOM v7</span>
+            <span class="tech-tag">Recharts</span>
+            <span class="tech-tag">Plain CSS</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Python 3.12</span>
+            <span class="tech-tag">pandas</span>
+            <span class="tech-tag">statsmodels</span>
+            <span class="tech-tag">Yarn</span>
+            <span class="tech-tag">concurrently</span>
+          </div>
+
+          <p>
+            We chose <strong>React 19</strong> paired with
+            <strong>Vite 8</strong> (currently in beta) for the front end
+            because the combination offers near-instant hot module replacement
+            and a fast build pipeline. The app uses the React Context API for
+            global event state &mdash; a lightweight choice that avoids Redux
+            overhead while the data model is still stabilizing. Styling is plain
+            CSS with custom properties (design tokens) organized around an
+            &ldquo;Aquatic Minimal&rdquo; theme: a deep navy primary color, a
+            bright teal accent, and clean white card surfaces.
+          </p>
+          <p>
+            On the back end, <strong>FastAPI</strong> gives us automatic OpenAPI
+            documentation and fast async request handling with minimal
+            boilerplate. The Python scientific stack (pandas, NumPy, SciPy,
+            statsmodels) handles all the data wrangling and statistical modeling
+            without pulling in a heavier ML framework.
+          </p>
+
+          <h2>What&rsquo;s Next</h2>
+          <p>The immediate priorities for the coming weeks are:</p>
+          <ul>
+            <li>
+              <strong>Firebase integration</strong> &mdash; replacing the
+              in-memory <code>EventsContext</code> with a Firestore-backed data
+              layer so events persist across sessions and can be shared across
+              devices.
+            </li>
+            <li>
+              <strong>Swimmer profiles and analytics UI</strong> &mdash;
+              building the front-end pages that consume the Python analytics
+              API, including trend charts and ARIMA predictions.
+            </li>
+            <li>
+              <strong>Authentication</strong> &mdash; adding Firebase
+              Authentication so coaches can have private, team-specific data.
+            </li>
+            <li>
+              <strong>Roster management</strong> &mdash; a page for adding and
+              managing swimmer profiles linked to event attendance and
+              performance records.
+            </li>
+          </ul>
+          <p>Check back here each week as we ship these features.</p>
         </div>
+        <!-- /.article__body -->
+      </article>
+    </main>
 
-        <p>
-          We chose <strong>React 19</strong> paired with <strong>Vite 8</strong> (currently in beta)
-          for the front end because the combination offers near-instant hot module replacement and a
-          fast build pipeline. The app uses the React Context API for global event state &mdash; a
-          lightweight choice that avoids Redux overhead while the data model is still stabilizing.
-          Styling is plain CSS with custom properties (design tokens) organized around an
-          &ldquo;Aquatic Minimal&rdquo; theme: a deep navy primary color, a bright teal accent, and
-          clean white card surfaces.
-        </p>
-        <p>
-          On the back end, <strong>FastAPI</strong> gives us automatic OpenAPI documentation and
-          fast async request handling with minimal boilerplate. The Python scientific stack
-          (pandas, NumPy, SciPy, statsmodels) handles all the data wrangling and statistical
-          modeling without pulling in a heavier ML framework.
-        </p>
-
-        <h2>What&rsquo;s Next</h2>
-        <p>
-          The immediate priorities for the coming weeks are:
-        </p>
-        <ul>
-          <li>
-            <strong>Firebase integration</strong> &mdash; replacing the in-memory
-            <code>EventsContext</code> with a Firestore-backed data layer so events persist
-            across sessions and can be shared across devices.
-          </li>
-          <li>
-            <strong>Swimmer profiles and analytics UI</strong> &mdash; building the front-end pages
-            that consume the Python analytics API, including trend charts and ARIMA predictions.
-          </li>
-          <li>
-            <strong>Authentication</strong> &mdash; adding Firebase Authentication so coaches can
-            have private, team-specific data.
-          </li>
-          <li>
-            <strong>Roster management</strong> &mdash; a page for adding and managing swimmer
-            profiles linked to event attendance and performance records.
-          </li>
-        </ul>
-        <p>
-          Check back here each week as we ship these features.
-        </p>
-
-      </div><!-- /.article__body -->
-    </article>
-  </main>
-
-  <!-- ── Footer ──────────────────────────────────────── -->
-  <footer class="site-footer">
-    <p>
-      SwimIQ &mdash; a senior capstone project &bull;
-      <a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">View on GitHub</a>
-    </p>
-  </footer>
-
-</body>
+    <!-- ── Footer ──────────────────────────────────────── -->
+    <footer class="site-footer">
+      <p>
+        SwimIQ &mdash; a senior capstone project &bull;
+        <a
+          href="https://github.com/primodemus/SwimIQ"
+          target="_blank"
+          rel="noopener"
+          >View on GitHub</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>

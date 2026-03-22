@@ -1,112 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SwimIQ Development Blog — weekly updates on building a swim-coach management platform." />
-  <title>SwimIQ Dev Blog</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SwimIQ Development Blog — weekly updates on building a swim-coach management platform."
+    />
+    <title>SwimIQ Dev Blog</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── Site Header ─────────────────────────────────── -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__logo" href="index.html">
+          <div class="site-header__logo-mark">S</div>
+          <span class="site-header__logo-text"
+            >SwimIQ <span>Dev Blog</span></span
+          >
+        </a>
+        <nav>
+          <ul class="site-header__nav">
+            <li><a href="index.html">All Posts</a></li>
+            <li>
+              <a
+                href="https://github.com/primodemus/SwimIQ"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <!-- ── Site Header ─────────────────────────────────── -->
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">
-        <div class="site-header__logo-mark">S</div>
-        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
-      </a>
-      <nav>
-        <ul class="site-header__nav">
-          <li><a href="index.html">All Posts</a></li>
-          <li><a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ── Page Content ────────────────────────────────── -->
-  <main class="page">
-
-    <!-- Hero -->
-    <section class="hero">
-      <span class="hero__label">Development Log</span>
-      <h1 class="hero__title">Building SwimIQ</h1>
-      <p class="hero__description">
-        A development blog recording the designing and building of Team Grouse's Senior Inquiry Project.
-      </p>
-      <p class="hero__project_description">
-        <b>SwimIQ</b> is a web platform and mobile application for swim coaches to manage practices, lifts, meets, and team analytics.
-      </p>
-      <br>
-      <p class ="hero__team_description">
-        <b>Development Team Grouse</b>: Lucas Rettig, Ian Palmroos, Tyler Leslie, and Primo Moreno.
-      </p>
-      <p class="hero__subtitle">New entries posted every week by team Grouse members as SwimIQ evolves.</p>
-    </section>
-
-    <!-- Post list -->
-    <section class="post-list" aria-label="Blog posts">
-      <!-- Week 6 post -->
-      <a class="post-card" href="posts/week6-project-update.html">
-        <div class="post-card__meta">
-          <span class="post-card__week-badge">Week 6</span>
-          <span class="post-card__date">March 15, 2026</span>
-          <span class="post-card__author-badge">Team</span>
-        </div>
-        <h2 class="post-card__title">Week 6: Feature Expansion & System Growth</h2>
-        <p class="post-card__excerpt">
-          This week we added a temporary messaging center, a temporary practice builder,
-          CCIW team rosters, an end-of-season prediction model, meet result data storage,
-          and a meet result upload system to expand SwimIQ’s functionality.
+    <!-- ── Page Content ────────────────────────────────── -->
+    <main class="page">
+      <!-- Hero -->
+      <section class="hero">
+        <span class="hero__label">Development Log</span>
+        <h1 class="hero__title">Building SwimIQ</h1>
+        <p class="hero__description">
+          A development blog recording the designing and building of Team
+          Grouse's Senior Inquiry Project.
         </p>
-        <span class="post-card__read-more">Read post &rarr;</span>
-      </a>
-
-      <!-- Week 5 post -->
-      <a class="post-card" href="posts/week5-project-update.html">
-        <div class="post-card__meta">
-          <span class="post-card__week-badge">Week 5</span>
-          <span class="post-card__date">March 5, 2026</span>
-          <span class="post-card__author-badge">Team</span>
-        </div>
-        <h2 class="post-card__title">Week 5: Heart Rate Dashboard & Firebase Integration</h2>
-        <p class="post-card__excerpt">
-          This week we began developing a heart rate dashboard for visualizing swimmer
-          training intensity while exploring Polar’s AccessLink API for collecting heart
-          rate data outside of Bluetooth limitations in water. We also started integrating
-          Firebase with a Firestore database, improving our performance prediction model,
-          and planning the separation of swimmer and coach profiles.
+        <p class="hero__project_description">
+          <b>SwimIQ</b> is a web platform and mobile application for swim
+          coaches to manage practices, lifts, meets, and team analytics.
         </p>
-        <span class="post-card__read-more">Read post &rarr;</span>
-      </a>
-
-      <!-- Week 4 post -->
-      <a class="post-card" href="posts/week4-project-overview.html">
-        <div class="post-card__meta">
-          <span class="post-card__week-badge">Week 4</span>
-          <span class="post-card__date">February 24, 2026</span>
-          <span class="post-card__author-badge">Team</span>
-        </div>
-        <h2 class="post-card__title">Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far</h2>
-        <p class="post-card__excerpt">
-          We&rsquo;re four weeks into SwimIQ. This post walks through every feature
-          currently in the app &mdash; from the coach dashboard and event forms to the
-          full calendar view and the Python analytics API &mdash; and explains the
-          technical decisions that got us here.
+        <br />
+        <p class="hero__team_description">
+          <b>Development Team Grouse</b>: Lucas Rettig, Ian Palmroos, Tyler
+          Leslie, and Primo Moreno.
         </p>
-        <span class="post-card__read-more">Read post &rarr;</span>
-      </a>
-    </section>
-  </main>
+        <p class="hero__subtitle">
+          New entries posted every week by team Grouse members as SwimIQ
+          evolves.
+        </p>
+      </section>
 
-  <!-- ── Footer ──────────────────────────────────────── -->
-  <footer class="site-footer">
-    <p>
-      SwimIQ &mdash; a senior capstone project &bull;
-      <a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">View on GitHub</a>
-    </p>
-  </footer>
+      <!-- Post list -->
+      <section class="post-list" aria-label="Blog posts">
+        <!-- Week 7 post -->
+        <a class="post-card" href="posts/week7-project-update.html">
+          <div class="post-card__meta">
+            <span class="post-card__week-badge">Week 7</span>
+            <span class="post-card__date">March 22, 2026</span>
+            <span class="post-card__author-badge">Lucas</span>
+          </div>
+          <h2 class="post-card__title">
+            Week 7: Advanced Analytics and Practice Builder Overhaul
+          </h2>
+          <p class="post-card__excerpt">
+            This week we introduced a comprehensive Analytics suite with a taper
+            prediction engine, dynamic team filtering, and interactive
+            performance charts. We also overhauled the Practice Builder to
+            include live PDF generation and database integration.
+          </p>
+          <span class="post-card__read-more">Read post &rarr;</span>
+        </a>
 
-</body>
+        <!-- Week 6 post -->
+        <a class="post-card" href="posts/week6-project-update.html">
+          <div class="post-card__meta">
+            <span class="post-card__week-badge">Week 6</span>
+            <span class="post-card__date">March 15, 2026</span>
+            <span class="post-card__author-badge">Team</span>
+          </div>
+          <h2 class="post-card__title">
+            Week 6: Feature Expansion & System Growth
+          </h2>
+          <p class="post-card__excerpt">
+            This week we added a temporary messaging center, a temporary
+            practice builder, CCIW team rosters, an end-of-season prediction
+            model, meet result data storage, and a meet result upload system to
+            expand SwimIQ’s functionality.
+          </p>
+          <span class="post-card__read-more">Read post &rarr;</span>
+        </a>
+
+        <!-- Week 5 post -->
+        <a class="post-card" href="posts/week5-project-update.html">
+          <div class="post-card__meta">
+            <span class="post-card__week-badge">Week 5</span>
+            <span class="post-card__date">March 5, 2026</span>
+            <span class="post-card__author-badge">Team</span>
+          </div>
+          <h2 class="post-card__title">
+            Week 5: Heart Rate Dashboard & Firebase Integration
+          </h2>
+          <p class="post-card__excerpt">
+            This week we began developing a heart rate dashboard for visualizing
+            swimmer training intensity while exploring Polar’s AccessLink API
+            for collecting heart rate data outside of Bluetooth limitations in
+            water. We also started integrating Firebase with a Firestore
+            database, improving our performance prediction model, and planning
+            the separation of swimmer and coach profiles.
+          </p>
+          <span class="post-card__read-more">Read post &rarr;</span>
+        </a>
+
+        <!-- Week 4 post -->
+        <a class="post-card" href="posts/week4-project-overview.html">
+          <div class="post-card__meta">
+            <span class="post-card__week-badge">Week 4</span>
+            <span class="post-card__date">February 24, 2026</span>
+            <span class="post-card__author-badge">Team</span>
+          </div>
+          <h2 class="post-card__title">
+            Week 4: Project Overview &mdash; What We&rsquo;ve Built So Far
+          </h2>
+          <p class="post-card__excerpt">
+            We&rsquo;re four weeks into SwimIQ. This post walks through every
+            feature currently in the app &mdash; from the coach dashboard and
+            event forms to the full calendar view and the Python analytics API
+            &mdash; and explains the technical decisions that got us here.
+          </p>
+          <span class="post-card__read-more">Read post &rarr;</span>
+        </a>
+      </section>
+    </main>
+
+    <!-- ── Footer ──────────────────────────────────────── -->
+    <footer class="site-footer">
+      <p>
+        SwimIQ &mdash; a senior capstone project &bull;
+        <a
+          href="https://github.com/primodemus/SwimIQ"
+          target="_blank"
+          rel="noopener"
+          >View on GitHub</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>

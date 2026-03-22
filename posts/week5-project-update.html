@@ -1,122 +1,144 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Week 5 SwimIQ dev log: heart rate dashboard development, Firebase integration, and machine learning improvements." />
-  <title>Week 5: Development Updates &mdash; SwimIQ Dev Blog</title>
-  <link rel="stylesheet" href="../style.css" />
-</head>
-<body>
-
-  <!-- ── Site Header ─────────────────────────────────── -->
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="../index.html">
-        <div class="site-header__logo-mark">S</div>
-        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
-      </a>
-      <nav>
-        <ul class="site-header__nav">
-          <li><a href="../index.html">All Posts</a></li>
-          <li><a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ── Article ─────────────────────────────────────── -->
-  <main class="page">
-    <article class="article">
-
-      <a class="article__back" href="../index.html">Back to all posts</a>
-
-      <div class="article__meta">
-        <span class="article__week-badge">Week 5</span>
-        <span class="article__date">March 5, 2025</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Week 5 SwimIQ dev log: heart rate dashboard development, Firebase integration, and machine learning improvements."
+    />
+    <title>Week 5: Development Updates &mdash; SwimIQ Dev Blog</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- ── Site Header ─────────────────────────────────── -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__logo" href="../index.html">
+          <div class="site-header__logo-mark">S</div>
+          <span class="site-header__logo-text"
+            >SwimIQ <span>Dev Blog</span></span
+          >
+        </a>
+        <nav>
+          <ul class="site-header__nav">
+            <li><a href="../index.html">All Posts</a></li>
+            <li>
+              <a
+                href="https://github.com/primodemus/SwimIQ"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <h1 class="article__title">Week 5: Heart Rate Dashboard & Firebase Integration</h1>
+    <!-- ── Article ─────────────────────────────────────── -->
+    <main class="page">
+      <article class="article">
+        <a class="article__back" href="../index.html">Back to all posts</a>
 
-      <p class="article__byline">
-        <strong>Author:</strong> Ian Palmroos
+        <div class="article__meta">
+          <span class="article__week-badge">Week 5</span>
+          <span class="article__date">March 5, 2025</span>
+        </div>
+
+        <h1 class="article__title">
+          Week 5: Heart Rate Dashboard & Firebase Integration
+        </h1>
+
+        <p class="article__byline"><strong>Author:</strong> Ian Palmroos</p>
+
+        <!-- ── Body ───────────────────────────────────── -->
+        <div class="article__body">
+          <h2>Heart Rate Dashboard</h2>
+          <p>
+            This week we began implementing a heart rate dashboard that will
+            allow coaches to visualize swimmer heart rate data alongside
+            training information. The interface for displaying heart rate trends
+            and zones is now in development, providing the foundation for
+            analyzing effort levels during practices and workouts.
+          </p>
+
+          <p>
+            One of the major challenges we encountered is that Bluetooth BLE
+            signals do not reliably transmit through water. Because of this
+            limitation, live streaming from devices like Polar heart rate
+            monitors during swims is difficult to support. Instead, we are
+            exploring integration with the Polar AccessLink API, which allows
+            heart rate data to be retrieved after a workout session has synced.
+            Future work will investigate other possible approaches for near
+            real-time monitoring.
+          </p>
+
+          <p>Below is a quick sample view of the heart rate page.</p>
+
+          <figure class="img-md">
+            <img src="../assets/SwimIQ_HR.png" />
+            <img src="../assets/SwimIQ_HR2.png" />
+          </figure>
+
+          <h2>Firebase Integration</h2>
+          <p>
+            We also began integrating Firebase into the application and set up a
+            Firestore database. This will allow SwimIQ to persist data beyond
+            local application state and support future features such as
+            authentication, team data management, and user profiles.
+          </p>
+
+          <p>
+            As part of this work, we started planning the separation between
+            swimmer and coach profiles. This structure will allow coaches to
+            manage team data while swimmers can eventually access their own
+            performance metrics and training history.
+          </p>
+
+          <h2>Analytics and Model Improvements</h2>
+          <p>
+            On the analytics side, improvements were made to the machine
+            learning model used for estimating swimmer performance trends. While
+            the model is functioning, additional work is planned to improve
+            prediction accuracy by refining the training data and expanding the
+            dataset used by the analytics pipeline.
+          </p>
+
+          <h2>What’s Next</h2>
+          <ul>
+            <li>
+              Continue integrating Firebase and expanding the Firestore database
+              structure
+            </li>
+            <li>
+              Improve heart rate data collection and evaluate Polar AccessLink
+              API workflows
+            </li>
+            <li>
+              Further refine the machine learning model and dataset used for
+              performance predictions
+            </li>
+            <li>Finish development of swimmer and coach profiles</li>
+          </ul>
+
+          <p>Check in soon for more updates!</p>
+        </div>
+        <!-- /.article__body -->
+      </article>
+    </main>
+
+    <!-- ── Footer ──────────────────────────────────────── -->
+    <footer class="site-footer">
+      <p>
+        SwimIQ &mdash; a senior capstone project &bull;
+        <a
+          href="https://github.com/primodemus/SwimIQ"
+          target="_blank"
+          rel="noopener"
+          >View on GitHub</a
+        >
       </p>
-
-      <!-- ── Body ───────────────────────────────────── -->
-      <div class="article__body">
-
-        <h2>Heart Rate Dashboard</h2>
-        <p>
-          This week we began implementing a heart rate dashboard that will allow coaches to
-          visualize swimmer heart rate data alongside training information. The interface
-          for displaying heart rate trends and zones is now in development, providing the
-          foundation for analyzing effort levels during practices and workouts.
-        </p>
-
-        <p>
-          One of the major challenges we encountered is that Bluetooth BLE signals do not
-          reliably transmit through water. Because of this limitation, live streaming from
-          devices like Polar heart rate monitors during swims is difficult to support.
-          Instead, we are exploring integration with the Polar AccessLink API, which allows
-          heart rate data to be retrieved after a workout session has synced. Future work
-          will investigate other possible approaches for near real-time monitoring.
-        </p>
-
-        <p>
-          Below is a quick sample view of the heart rate page.
-        </p> 
-
-        <figure>
-        <img src = "../assets/SwimIQ_HR.png"  />
-        <img src = "../assets/SwimIQ_HR2.png" />
-      </figure>
-
-        <h2>Firebase Integration</h2>
-        <p>
-          We also began integrating Firebase into the application and set up a Firestore
-          database. This will allow SwimIQ to persist data beyond local application state
-          and support future features such as authentication, team data management, and
-          user profiles.
-        </p>
-
-        <p>
-          As part of this work, we started planning the separation between swimmer and
-          coach profiles. This structure will allow coaches to manage team data while
-          swimmers can eventually access their own performance metrics and training
-          history.
-        </p>
-
-        <h2>Analytics and Model Improvements</h2>
-        <p>
-          On the analytics side, improvements were made to the machine learning model used
-          for estimating swimmer performance trends. While the model is functioning,
-          additional work is planned to improve prediction accuracy by refining the
-          training data and expanding the dataset used by the analytics pipeline.
-        </p>
-
-        <h2>What’s Next</h2>
-        <ul>
-          <li>Continue integrating Firebase and expanding the Firestore database structure</li>
-          <li>Improve heart rate data collection and evaluate Polar AccessLink API workflows</li>
-          <li>Further refine the machine learning model and dataset used for performance predictions</li>
-          <li>Finish development of swimmer and coach profiles </li>
-        </ul>
-
-        <p>
-          Check in soon for more updates!
-        </p>
-
-      </div><!-- /.article__body -->
-    </article>
-  </main>
-
-  <!-- ── Footer ──────────────────────────────────────── -->
-  <footer class="site-footer">
-    <p>
-      SwimIQ &mdash; a senior capstone project &bull;
-      <a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">View on GitHub</a>
-    </p>
-  </footer>
-
-</body>
+    </footer>
+  </body>
 </html>

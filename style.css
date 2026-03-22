@@ -56,7 +56,7 @@ img {
 }
 
 .site-header__inner {
-  max-width: 860px;
+  max-width: 1200px; /* Widened for desktop */
   margin: 0 auto;
   height: 56px;
   display: flex;
@@ -117,7 +117,7 @@ img {
 
 /* ── Page wrapper ─────────────────────────────────────────── */
 .page {
-  max-width: 860px;
+  max-width: 1200px; /* Widened for desktop */
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
@@ -125,6 +125,9 @@ img {
 /* ── Hero / page title section ────────────────────────────── */
 .hero {
   margin-bottom: 48px;
+  max-width: 800px; /* Keeps index page from stretching too wide */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero__label {
@@ -145,17 +148,14 @@ img {
   margin-bottom: 14px;
 }
 
-/* .hero__description {
-  font-size: 16px;
-  color: #4b5d68;
-  max-width: 620px;
-} */
-
 /* ── Post cards (index page) ──────────────────────────────── */
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-width: 800px; /* Keeps index page from stretching too wide */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .post-card {
@@ -251,8 +251,25 @@ img {
   }
 }
 
+/* ── Desktop Text Constraints ─────────────────────────────── */
+/* Centers the text elements at a readable width, but lets images go full-width */
+.article__back,
+.article__meta,
+.article__title,
+.article__byline,
+.article__body > p,
+.article__body > h2,
+.article__body > h3,
+.article__body > ul,
+.article__body > ol,
+.tech-tags {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .article__back {
-  display: inline-flex;
+  display: flex; /* Changed from inline-flex so auto margins work */
   align-items: center;
   gap: 6px;
   font-size: 13px;
@@ -375,6 +392,9 @@ img {
   overflow-x: auto;
   margin-bottom: 24px;
   line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .article__body pre code {
@@ -387,52 +407,49 @@ img {
 
 /* ── Figures / screenshots ─────────────────────────────────── */
 .article__body figure {
-  margin: 32px 0;
+  margin: 48px auto; 
+  width: 100%;
+  max-width: 1000px; /* Caps the absolute largest images so they aren't overwhelming */
+}
+
+.article__body img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); 
 }
 
 .article__body figcaption {
   font-size: 13px;
   color: #7a909f;
-  margin-top: 10px;
+  margin-top: 12px;
   text-align: center;
   font-style: italic;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.screenshot-placeholder {
-  background: linear-gradient(135deg, #e6faf8 0%, #d4eff6 100%);
-  border: 2px dashed #00C2A8;
-  border-radius: 12px;
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: #4b5d68;
+/* --- NEW: Utility classes for smaller screenshots --- */
+
+/* Use for medium modals or single-column features */
+.article__body figure.img-md {
+  max-width: 700px;
 }
 
-.screenshot-placeholder__icon {
-  font-size: 36px;
-  opacity: 0.5;
+/* Use for small popups like Login, Signup, and Role Selection */
+.article__body figure.img-sm {
+  max-width: 400px;
 }
 
-.screenshot-placeholder__label {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.screenshot-placeholder__hint {
-  font-size: 12px;
-  color: #7a909f;
-  font-family: monospace;
-}
 
 /* ── Tech tag pills ─────────────────────────────────────────── */
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 16px 0 24px;
+  margin-top: 16px; 
+  margin-bottom: 24px;
 }
 
 .tech-tag {
