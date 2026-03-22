@@ -1,254 +1,464 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Week 7 SwimIQ dev log: Dive into the new Analytics suite, Practice Builder updates, and Authentication flows." />
-  <title>Week 7: Analytics, Practice Builder & Auth &mdash; SwimIQ Dev Blog</title>
-  <link rel="stylesheet" href="../style.css" />
-</head>
-<body>
-
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="../index.html">
-        <div class="site-header__logo-mark">S</div>
-        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
-      </a>
-      <nav>
-        <ul class="site-header__nav">
-          <li><a href="../index.html">All Posts</a></li>
-          <li><a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main class="page">
-    <article class="article">
-
-      <a class="article__back" href="../index.html">Back to all posts</a>
-
-      <div class="article__meta">
-        <span class="article__week-badge">Week 7</span>
-        <span class="article__date">March 21, 2026</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Week 7 SwimIQ dev log: Dive into the new Analytics suite, Practice Builder updates, and Authentication flows."
+    />
+    <title>
+      Week 7: Analytics, Practice Builder & Auth &mdash; SwimIQ Dev Blog
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__logo" href="../index.html">
+          <div class="site-header__logo-mark">S</div>
+          <span class="site-header__logo-text"
+            >SwimIQ <span>Dev Blog</span></span
+          >
+        </a>
+        <nav>
+          <ul class="site-header__nav">
+            <li><a href="../index.html">All Posts</a></li>
+            <li>
+              <a
+                href="https://github.com/primomoreno23-droid/SwimIQ.github.io"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <h1 class="article__title">Week 7: Advanced Analytics, Practice Builder, and Authentication</h1>
+    <main class="page">
+      <article class="article">
+        <a class="article__back" href="../index.html">Back to all posts</a>
 
-      <p class="article__byline">
-        <strong>Author:</strong> Lucas Rettig
+        <div class="article__meta">
+          <span class="article__week-badge">Week 7</span>
+          <span class="article__date">March 21, 2026</span>
+        </div>
+
+        <h1 class="article__title">
+          Week 7: Advanced Analytics, Practice Builder, and Authentication
+        </h1>
+
+        <p class="article__byline"><strong>Author:</strong> Lucas Rettig</p>
+
+        <div class="article__body">
+          <h2>Diving into Analytics</h2>
+          <p>
+            This week, we focused heavily on bringing our data to life. I took
+            point on the Analytics section, designing an interface that lets
+            coaches dig deep into swimmer performance and predictive modeling.
+            When you first enter the Analytics section, you are presented with a
+            mode selector giving you three distinct paths: Single Swimmer, Team
+            Overlay, or Multi-Swimmer.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Analytics_Modes.png"
+              alt="SwimIQ Analytics Mode Selector"
+            />
+            <figcaption>
+              <b>Analytics Mode Selector</b> &mdash; Choose between Single
+              Swimmer, Team Overlay, or Multi-Swimmer analysis.
+            </figcaption>
+          </figure>
+
+          <h3>The Full Analytics View</h3>
+          <p>
+            Once a mode is selected, you are brought into the main Analytics
+            dashboard. Here is a look at the full page in Multi-Swimmer mode. We
+            have a primary graph displaying time data across a season, flanked
+            by data controls at the top and roster management on the side.
+          </p>
+          <p>
+            This layout is designed to keep the visual data front and center
+            while allowing the coach to manipulate the underlying dataset
+            without having to navigate to different pages or lose their train of
+            thought.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Full_Analytics.png"
+              alt="SwimIQ Full Analytics Dashboard"
+            />
+            <figcaption>
+              <b>Full Analytics Dashboard</b> &mdash; The complete view showing
+              data filters, the performance graph, roster controls, and
+              prediction models.
+            </figcaption>
+          </figure>
+
+          <h3>Team Search & Filtering</h3>
+          <p>
+            To get the right data on the screen, the top control panel allows
+            coaches to perform a broad team search. You can select the specific
+            school/team, gender, season timeframe, and event you want to
+            analyze.
+          </p>
+          <p>
+            We've also added contextual filters to account for the differences
+            in training cycles. For example, coaches can easily toggle between
+            the NCAA (Aug-Mar) cycle or High School Fall/Winter seasons,
+            ensuring the data mapped on the graph reflects the correct training
+            block.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Team_Filters.png"
+              alt="SwimIQ Team Filters"
+            />
+            <figcaption>
+              <b>Team Filters</b> &mdash; Select school, event, training cycle,
+              and season timeframe.
+            </figcaption>
+          </figure>
+
+          <h3>Swimmer Filters</h3>
+          <p>
+            Once a team's roster is loaded, a coach may not want to look at
+            every single athlete—especially for large teams. To handle this, we
+            added an additional granular control panel to filter the loaded
+            swimmers.
+          </p>
+          <p>
+            Coaches can narrow down the roster by setting a minimum number of
+            swims and a best-time (max) threshold. This ensures the data is
+            clean and they are only looking at swimmers who have consistently
+            competed in the event or who meet a specific competitive standard.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Roster_Filter.png"
+              alt="SwimIQ Roster Filter"
+            />
+            <figcaption>
+              <b>Roster Filter</b> &mdash; Filter loaded athletes by their
+              number of swims and time thresholds.
+            </figcaption>
+          </figure>
+
+          <h3>Swimmer Lists & Roster Management</h3>
+          <p>
+            The athletes are displayed in a side panel split into two lists:
+            Active Roster and Excluded Roster. You can easily add or remove
+            specific swimmers from the active dataset by clicking the
+            <code>+</code> or <code>-</code> buttons next to their names.
+          </p>
+          <p>
+            These lists are highly interactive, allowing you to filter and sort
+            by any column. By default, it organizes athletes by their personal
+            record (PR) from fastest (lowest time) to slowest. The list also
+            includes a manual input for goal times; when a coach enters a
+            numerical goal for an athlete here, it renders visually as a star on
+            our outcome charts.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Rosters.png"
+              alt="SwimIQ Active Roster"
+            />
+            <figcaption>
+              <b>Active Roster</b> &mdash; Manage the active dataset and input
+              specific goal times for athletes.
+            </figcaption>
+          </figure>
+
+          <h3>Performance Tracking</h3>
+          <p>
+            Over on the Performance Graph, the active roster's time data is
+            mapped out across the season. To make it easy to differentiate
+            athletes at a glance, the data lines representing each swimmer's
+            times are drawn using a color gradient.
+          </p>
+          <p>
+            Red indicates the fastest PR swimmer, transitioning through the
+            spectrum to blue for the slowest swimmer in the active group. If a
+            coach wants to highlight a specific athlete or change their assigned
+            color, they can easily modify it by clicking the color block next to
+            that swimmer's name in the roster list.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Performance_Graph.png"
+              alt="SwimIQ Performance Graph"
+            />
+            <figcaption>
+              <b>Performance Graph</b> &mdash; Visualizing time data with
+              customizable color gradients.
+            </figcaption>
+          </figure>
+
+          <h3>The Prediction Engine</h3>
+          <p>
+            One of the core machine learning features we are building into
+            SwimIQ is taper prediction. The Prediction Engine menu allows
+            coaches to calculate an estimated time range for an athlete's fully
+            tapered performance at a championship meet.
+          </p>
+          <p>
+            Because our current dataset consists of completed past seasons, we
+            test our model by setting a "training cutoff" date (dictating what
+            times the model is allowed to see) and a "target date" for the
+            prediction. These dates appear as vertical reference lines—blue and
+            green dashed lines—on the main performance graph.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Prediction_Engine.png"
+              alt="SwimIQ Prediction Engine Controls"
+            />
+            <figcaption>
+              <b>Prediction Engine</b> &mdash; Set training cutoff dates and
+              target prediction dates to run the model.
+            </figcaption>
+          </figure>
+
+          <h3>Outcome Target Board</h3>
+          <p>
+            The results of the prediction engine are visualized on the Outcome
+            Target Board using a specialized box-and-whisker chart. The inner
+            box represents the 50% confidence interval for the predicted time,
+            while the outer whiskers extend to the 1st and 99th percentiles.
+          </p>
+          <p>
+            To see how accurate the model was, a green checkmark box indicates
+            the <em>actual</em> tapered time the person swam at that target
+            date. Any coach-entered goal times appear here as yellow stars. The
+            target confidence value shows the percent guess based on the
+            prediction, visible in the roster list. Our ongoing goal is to
+            continue tinkering with the backend model to make that green
+            checkmark consistently land tighter inside the prediction box.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Outcome_Target_Board.png"
+              alt="SwimIQ Outcome Target Board Box Chart"
+            />
+            <figcaption>
+              <b>Outcome Target Board</b> &mdash; Box and whisker charts
+              displaying taper predictions vs. actual results and coach goals.
+            </figcaption>
+          </figure>
+
+          <h3>Single Swimmer View</h3>
+          <p>
+            For highly focused analysis, the Single Swimmer page isolates an
+            individual athlete's data. This view enlarges the swimmer's core
+            stats above the performance graph and includes a dedicated meet
+            history list.
+          </p>
+          <p>
+            This allows coaches to click into a specific swimmer and see exactly
+            where and when their times were achieved throughout the season
+            without the clutter of the rest of the team.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Single_Swimmer.png"
+              alt="SwimIQ Single Swimmer Dashboard"
+            />
+            <figcaption>
+              <b>Single Swimmer Profile</b> &mdash; Deep dive into individual
+              performance and meet history.
+            </figcaption>
+          </figure>
+
+          <hr />
+
+          <h2>Authentication & Account Types</h2>
+          <p>
+            Another major milestone this week was establishing our user
+            authentication flows and database connections. When a user first
+            opens SwimIQ, they can now create an account using a standard email
+            and password or by continuing with Google OAuth.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Login.png"
+              alt="SwimIQ Login Screen"
+            />
+            <figcaption>
+              <b>Login Screen</b> &mdash; Support for Google OAuth and standard
+              email logins.
+            </figcaption>
+          </figure>
+
+          <h3>Role Selection: Coach vs. Athlete</h3>
+          <p>
+            Once signed up, the user must select their account role: Coach or
+            Athlete. This is a critical junction, as it dictates what data they
+            can see and what actions they can perform within the app.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Role_Selection.png"
+              alt="SwimIQ Role Selection"
+            />
+            <figcaption>
+              <b>Role Selection</b> &mdash; Creating distinct environments for
+              coaches and swimmers.
+            </figcaption>
+          </figure>
+
+          <h3>Coach Accounts & Team Generation</h3>
+          <p>
+            When a coach creates an account, they generate a new team profile in
+            our database. This system generates a unique team code that the
+            coach can securely hand out to their roster.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Coach_Signup.png"
+              alt="SwimIQ Coach Signup"
+            />
+            <figcaption>
+              <b>Coach Signup</b> &mdash; Registering a new team in the
+              database.
+            </figcaption>
+          </figure>
+
+          <h3>Athlete Accounts & Linking</h3>
+          <p>
+            Athletes have two choices during onboarding. They can sign up as an
+            independent, unlinked account (if they just want to track their own
+            times manually), or they can join an existing team.
+          </p>
+          <p>
+            By entering the team code provided by their coach, the athlete's
+            account is instantly linked to the team's database. This
+            automatically populates their dashboard with the team's scheduled
+            meets, practices, and roster data. While these database writing and
+            linking systems are successfully in place, our next step is to add
+            robust guardrails and input validation to ensure account security
+            before moving to production.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Athlete_Signup_Choice.png"
+              alt="SwimIQ Athlete Signup Choice"
+            />
+          </figure>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week7/SwimIQ_Athlete_Join.png"
+              alt="SwimIQ Athlete Join With Code"
+            />
+            <figcaption>
+              <b>Athlete Onboarding</b> &mdash; Using a secure team code to link
+              an athlete to their coach's database.
+            </figcaption>
+          </figure>
+
+          <hr />
+
+          <h2>Practice Builder Updates</h2>
+          <p>
+            Tyler also pushed a massive update to the Practice Builder this
+            week. The interface has been completely styled for a better user
+            experience. As a coach builds out structured workout sets, a live
+            PDF preview generates on the right side of the screen.
+          </p>
+          <p>
+            This preview automatically calculates and displays yardage totals
+            for individual sets as well as the complete practice total. Once
+            finished, the coach can print the PDF directly. Best of all, these
+            practices now save directly to the database, so coaches can log in,
+            pull up an old practice, edit it, and reuse it instantly.
+          </p>
+
+          <figure>
+            <img
+              src="../assets/week7/SwimIQ_Practice_Builder.png"
+              alt="SwimIQ Practice Builder"
+            />
+            <figcaption>
+              <b>Practice Builder</b> &mdash; Build structured workouts with
+              automatic yardage tracking and live PDF generation.
+            </figcaption>
+          </figure>
+
+          <hr />
+
+          <h2>Sprint One Presentation & What's Next</h2>
+          <p>
+            We had our Sprint One presentation this week, and it went incredibly
+            well! Following that, our client demo was a great success and
+            provided some excellent feedback that is shaping our immediate
+            roadmap.
+          </p>
+          <p>
+            The client suggested adding a manual entry system for data outside
+            of our file importing method, as well as a meet simulation tool
+            based on editable times. We are making these top priorities. Looking
+            ahead, the next sprint is going to be packed. Here is what we are
+            planning to tackle:
+          </p>
+          <ul>
+            <li>
+              <strong>Mobile App:</strong> Begin creating the mobile version of
+              SwimIQ.
+            </li>
+            <li>
+              <strong>Health Data Integration:</strong> Setup the handoff of
+              health data from the mobile app to our database.
+            </li>
+            <li>
+              <strong>Meet Simulator:</strong> Build out a strong meet
+              simulation tool based on the client's feedback. We may also
+              explore creating an optimization algorithm for this, though that
+              algorithm might stretch into the following sprint.
+            </li>
+            <li>
+              <strong>Communication:</strong> Add messaging and announcement
+              features for teams.
+            </li>
+            <li>
+              <strong>AI Integration:</strong> Develop a Gemini-powered set
+              designer to help coaches generate creative practices.
+            </li>
+          </ul>
+          <p>
+            There are plenty more cool features to come as we move into the
+            second half of the spring. See you next week!
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        SwimIQ &mdash; a senior capstone project &bull;
+        <a
+          href="https://github.com/primodemus/SwimIQ"
+          target="_blank"
+          rel="noopener"
+          >View on GitHub</a
+        >
       </p>
-
-      <div class="article__body">
-
-        <h2>Diving into Analytics</h2>
-        <p>
-          This week, we focused heavily on bringing our data to life. I took point on the Analytics section, designing an interface that lets coaches dig deep into swimmer performance and predictive modeling. When you first enter the Analytics section, you are presented with a mode selector giving you three distinct paths: Single Swimmer, Team Overlay, or Multi-Swimmer.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Analytics_Modes.png" alt="SwimIQ Analytics Mode Selector" />
-          <figcaption><b>Analytics Mode Selector</b> &mdash; Choose between Single Swimmer, Team Overlay, or Multi-Swimmer analysis.</figcaption>
-        </figure>
-
-        <h3>The Full Analytics View</h3>
-        <p>
-          Once a mode is selected, you are brought into the main Analytics dashboard. Here is a look at the full page in Multi-Swimmer mode. We have a primary graph displaying time data across a season, flanked by data controls at the top and roster management on the side. 
-        </p>
-        <p>
-          This layout is designed to keep the visual data front and center while allowing the coach to manipulate the underlying dataset without having to navigate to different pages or lose their train of thought.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Full_Analytics.png" alt="SwimIQ Full Analytics Dashboard" />
-          <figcaption><b>Full Analytics Dashboard</b> &mdash; The complete view showing data filters, the performance graph, roster controls, and prediction models.</figcaption>
-        </figure>
-
-        <h3>Team Search & Filtering</h3>
-        <p>
-          To get the right data on the screen, the top control panel allows coaches to perform a broad team search. You can select the specific school/team, gender, season timeframe, and event you want to analyze. 
-        </p>
-        <p>
-          We've also added contextual filters to account for the differences in training cycles. For example, coaches can easily toggle between the NCAA (Aug-Mar) cycle or High School Fall/Winter seasons, ensuring the data mapped on the graph reflects the correct training block.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Team_Filters.png" alt="SwimIQ Team Filters" />
-          <figcaption><b>Team Filters</b> &mdash; Select school, event, training cycle, and season timeframe.</figcaption>
-        </figure>
-
-        <h3>Swimmer Filters</h3>
-        <p>
-          Once a team's roster is loaded, a coach may not want to look at every single athlete—especially for large teams. To handle this, we added an additional granular control panel to filter the loaded swimmers. 
-        </p>
-        <p>
-          Coaches can narrow down the roster by setting a minimum number of swims and a best-time (max) threshold. This ensures the data is clean and they are only looking at swimmers who have consistently competed in the event or who meet a specific competitive standard.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Roster_Filter.png" alt="SwimIQ Roster Filter" />
-          <figcaption><b>Roster Filter</b> &mdash; Filter loaded athletes by their number of swims and time thresholds.</figcaption>
-        </figure>
-
-        <h3>Swimmer Lists & Roster Management</h3>
-        <p>
-          The athletes are displayed in a side panel split into two lists: Active Roster and Excluded Roster. You can easily add or remove specific swimmers from the active dataset by clicking the <code>+</code> or <code>-</code> buttons next to their names. 
-        </p>
-        <p>
-          These lists are highly interactive, allowing you to filter and sort by any column. By default, it organizes athletes by their personal record (PR) from fastest (lowest time) to slowest. The list also includes a manual input for goal times; when a coach enters a numerical goal for an athlete here, it renders visually as a star on our outcome charts.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Rosters.png" alt="SwimIQ Active Roster" />
-          <figcaption><b>Active Roster</b> &mdash; Manage the active dataset and input specific goal times for athletes.</figcaption>
-        </figure>
-
-        <h3>Performance Tracking</h3>
-        <p>
-          Over on the Performance Graph, the active roster's time data is mapped out across the season. To make it easy to differentiate athletes at a glance, the data lines representing each swimmer's times are drawn using a color gradient. 
-        </p>
-        <p>
-          Red indicates the fastest PR swimmer, transitioning through the spectrum to blue for the slowest swimmer in the active group. If a coach wants to highlight a specific athlete or change their assigned color, they can easily modify it by clicking the color block next to that swimmer's name in the roster list.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Performance_Graph.png" alt="SwimIQ Performance Graph" />
-          <figcaption><b>Performance Graph</b> &mdash; Visualizing time data with customizable color gradients.</figcaption>
-        </figure>
-
-        <h3>The Prediction Engine</h3>
-        <p>
-          One of the core machine learning features we are building into SwimIQ is taper prediction. The Prediction Engine menu allows coaches to calculate an estimated time range for an athlete's fully tapered performance at a championship meet. 
-        </p>
-        <p>
-          Because our current dataset consists of completed past seasons, we test our model by setting a "training cutoff" date (dictating what times the model is allowed to see) and a "target date" for the prediction. These dates appear as vertical reference lines—blue and green dashed lines—on the main performance graph.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Prediction_Engine.png" alt="SwimIQ Prediction Engine Controls" />
-          <figcaption><b>Prediction Engine</b> &mdash; Set training cutoff dates and target prediction dates to run the model.</figcaption>
-        </figure>
-
-        <h3>Outcome Target Board</h3>
-        <p>
-          The results of the prediction engine are visualized on the Outcome Target Board using a specialized box-and-whisker chart. The inner box represents the 50% confidence interval for the predicted time, while the outer whiskers extend to the 1st and 99th percentiles. 
-        </p>
-        <p>
-          To see how accurate the model was, a green checkmark box indicates the <em>actual</em> tapered time the person swam at that target date. Any coach-entered goal times appear here as yellow stars. The target confidence value shows the percent guess based on the prediction, visible in the roster list. Our ongoing goal is to continue tinkering with the backend model to make that green checkmark consistently land tighter inside the prediction box.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Outcome_Target_Board.png" alt="SwimIQ Outcome Target Board Box Chart" />
-          <figcaption><b>Outcome Target Board</b> &mdash; Box and whisker charts displaying taper predictions vs. actual results and coach goals.</figcaption>
-        </figure>
-
-        <h3>Single Swimmer View</h3>
-        <p>
-          For highly focused analysis, the Single Swimmer page isolates an individual athlete's data. This view enlarges the swimmer's core stats above the performance graph and includes a dedicated meet history list.
-        </p>
-        <p>
-          This allows coaches to click into a specific swimmer and see exactly where and when their times were achieved throughout the season without the clutter of the rest of the team.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Single_Swimmer.png" alt="SwimIQ Single Swimmer Dashboard" />
-          <figcaption><b>Single Swimmer Profile</b> &mdash; Deep dive into individual performance and meet history.</figcaption>
-        </figure>
-
-        <hr />
-
-        <h2>Authentication & Account Types</h2>
-        <p>
-          Another major milestone this week was establishing our user authentication flows and database connections. When a user first opens SwimIQ, they can now create an account using a standard email and password or by continuing with Google OAuth.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Login.png" alt="SwimIQ Login Screen" />
-          <figcaption><b>Login Screen</b> &mdash; Support for Google OAuth and standard email logins.</figcaption>
-        </figure>
-
-        <h3>Role Selection: Coach vs. Athlete</h3>
-        <p>
-          Once signed up, the user must select their account role: Coach or Athlete. This is a critical junction, as it dictates what data they can see and what actions they can perform within the app.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Role_Selection.png" alt="SwimIQ Role Selection" />
-          <figcaption><b>Role Selection</b> &mdash; Creating distinct environments for coaches and swimmers.</figcaption>
-        </figure>
-
-        <h3>Coach Accounts & Team Generation</h3>
-        <p>
-          When a coach creates an account, they generate a new team profile in our database. This system generates a unique team code that the coach can securely hand out to their roster. 
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Coach_Signup.png" alt="SwimIQ Coach Signup" />
-          <figcaption><b>Coach Signup</b> &mdash; Registering a new team in the database.</figcaption>
-        </figure>
-
-        <h3>Athlete Accounts & Linking</h3>
-        <p>
-          Athletes have two choices during onboarding. They can sign up as an independent, unlinked account (if they just want to track their own times manually), or they can join an existing team. 
-        </p>
-        <p>
-          By entering the team code provided by their coach, the athlete's account is instantly linked to the team's database. This automatically populates their dashboard with the team's scheduled meets, practices, and roster data. While these database writing and linking systems are successfully in place, our next step is to add robust guardrails and input validation to ensure account security before moving to production.
-        </p>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Athlete_Signup_Choice.png" alt="SwimIQ Athlete Signup Choice" />
-        </figure>
-
-        <figure class="img-sm">
-          <img src="../assets/week7/SwimIQ_Athlete_Join.png" alt="SwimIQ Athlete Join With Code" />
-          <figcaption><b>Athlete Onboarding</b> &mdash; Using a secure team code to link an athlete to their coach's database.</figcaption>
-        </figure>
-
-        <hr />
-
-        <h2>Practice Builder Updates</h2>
-        <p>
-          Tyler also pushed a massive update to the Practice Builder this week. The interface has been completely styled for a better user experience. As a coach builds out structured workout sets, a live PDF preview generates on the right side of the screen. 
-        </p>
-        <p>
-          This preview automatically calculates and displays yardage totals for individual sets as well as the complete practice total. Once finished, the coach can print the PDF directly. Best of all, these practices now save directly to the database, so coaches can log in, pull up an old practice, edit it, and reuse it instantly.
-        </p>
-
-        <figure>
-          <img src="../assets/week7/SwimIQ_Practice_Builder.png" alt="SwimIQ Practice Builder" />
-          <figcaption><b>Practice Builder</b> &mdash; Build structured workouts with automatic yardage tracking and live PDF generation.</figcaption>
-        </figure>
-
-        <hr />
-
-        <h2>Sprint One Presentation & What's Next</h2>
-        <p>
-          We had our Sprint One presentation this week, and it went incredibly well! Following that, our client demo was a great success and provided some excellent feedback that is shaping our immediate roadmap.
-        </p>
-        <p>
-          The client suggested adding a manual entry system for data outside of our file importing method, as well as a meet simulation tool based on editable times. We are making these top priorities. Looking ahead, the next sprint is going to be packed. Here is what we are planning to tackle:
-        </p>
-        <ul>
-          <li><strong>Mobile App:</strong> Begin creating the mobile version of SwimIQ.</li>
-          <li><strong>Health Data Integration:</strong> Setup the handoff of health data from the mobile app to our database.</li>
-          <li><strong>Meet Simulator:</strong> Build out a strong meet simulation tool based on the client's feedback. We may also explore creating an optimization algorithm for this, though that algorithm might stretch into the following sprint.</li>
-          <li><strong>Communication:</strong> Add messaging and announcement features for teams.</li>
-          <li><strong>AI Integration:</strong> Develop a Gemini-powered set designer to help coaches generate creative practices.</li>
-        </ul>
-        <p>
-          There are plenty more cool features to come as we move into the second half of the spring. See you next week!
-        </p>
-
-      </div></article>
-  </main>
-
-  <footer class="site-footer">
-    <p>
-      SwimIQ &mdash; a senior capstone project &bull;
-      <a href="https://github.com/primodemus/SwimIQ" target="_blank" rel="noopener">View on GitHub</a>
-    </p>
-  </footer>
-
-</body>
+    </footer>
+  </body>
 </html>
