@@ -432,6 +432,11 @@ img {
 
 /* --- NEW: Utility classes for smaller screenshots --- */
 
+/* Use for large full-browser landscape screenshots */
+.article__body figure.img-lg {
+  max-width: 760px;
+}
+
 /* Use for medium modals or single-column features */
 .article__body figure.img-md {
   max-width: 700px;

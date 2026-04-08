@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Week 8 - 9 SwimIQ dev log: Monorepo restructure, Meet Simulator MVP, mobile heart rate monitoring, real-time messaging, and a sweeping settings overhaul."
+    />
+    <title>
+      Week 8 - 9: Meet Simulator, Mobile HR &amp; Monorepo &mdash; SwimIQ Dev Blog
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__logo" href="../index.html">
+          <div class="site-header__logo-mark">S</div>
+          <span class="site-header__logo-text"
+            >SwimIQ <span>Dev Blog</span></span
+          >
+        </a>
+        <nav>
+          <ul class="site-header__nav">
+            <li><a href="../index.html">All Posts</a></li>
+            <li>
+              <a
+                href="https://github.com/primomoreno23-droid/SwimIQ.github.io"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <article class="article">
+        <a class="article__back" href="../index.html">Back to all posts</a>
+
+        <div class="article__meta">
+          <span class="article__week-badge">Week 8 - 9</span>
+          <span class="article__date">April 7, 2026</span>
+        </div>
+
+        <h1 class="article__title">
+          Week 8 - 9: Meet Simulator MVP, Mobile Heart Rate &amp; The Big Monorepo Restructure
+        </h1>
+
+        <p class="article__byline"><strong>Author:</strong> Primo Moreno</p>
+
+        <div class="article__body">
+          <p>
+            The past two weeks represent the largest single burst of progress SwimIQ has
+            seen. We shipped an entirely new monorepo structure, launched the Meet
+            Simulator MVP, bootstrapped the mobile app with full heart rate monitoring,
+            overhauled the settings experience, and added a real-time communication
+            layer. There is a lot to cover, so let&rsquo;s get into it.
+          </p>
+
+          <hr />
+
+          <h2>Infrastructure: Monorepo Restructure</h2>
+          <p>
+            The biggest architectural change of the sprint was reorganizing the entire
+            project into a proper monorepo. Previously, logic and utilities were scattered
+            &mdash; or worse, duplicated &mdash; between the web and mobile codebases. The
+            new layout uses Yarn workspaces and is organized into four clear areas:
+          </p>
+          <ul>
+            <li><strong>apps/web</strong> &mdash; the React web application</li>
+            <li><strong>apps/mobile</strong> &mdash; the new Expo/React Native app</li>
+            <li>
+              <strong>packages/logic</strong> &mdash; shared business logic
+              (<code>userData.js</code>, <code>index.js</code>) consumed by both apps
+            </li>
+            <li>
+              <strong>packages/api</strong> &mdash; a shared API abstraction layer used
+              across the monorepo
+            </li>
+          </ul>
+          <p>
+            Firebase auth, user settings, and team data operations now live in
+            <code>packages/logic</code> as reusable modules rather than being copy-pasted
+            between apps. Yarn workspaces ties it all together with a single
+            <code>yarn install</code> at the repo root.
+          </p>
+          <p>
+            We also took this opportunity to formalize the Firestore data model.
+            Team-level data now lives in a dedicated <strong>TeamData</strong> collection
+            and per-user data in a separate <strong>UserData</strong> collection, keeping
+            them cleanly isolated from each other.
+          </p>
+
+          <hr />
+
+          <h2>Web App</h2>
+
+          <h3>Full Settings Page</h3>
+          <p>
+            The app now has a proper, fully featured Settings page built from scratch in
+            <code>SettingsPage.jsx</code>. It&rsquo;s organized into nine sections:
+            <em>Profile &amp; Account, Appearance, Analytics, Calendar, Data Uploads,
+            Heart Rate, Notifications, Practice Builder,</em> and <em>Privacy</em>.
+            Every preference a coach or athlete might need to tweak lives in one place.
+          </p>
+          <p>
+            The <strong>Profile &amp; Account</strong> section surfaces identity info
+            (display name, email, role), a shareable team code coaches can hand out to
+            athletes, a password reset flow, and a &ldquo;Switch to athlete view&rdquo;
+            toggle right in the session card &mdash; so coaches can preview the app from
+            an athlete&rsquo;s perspective without needing a second account.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Settings_Profile.png"
+              alt="SwimIQ Settings — Profile & Account"
+            />
+            <figcaption>
+              <b>Profile &amp; Account</b> &mdash; Identity, team code, security, and
+              the coach/athlete view toggle all live in one place.
+            </figcaption>
+          </figure>
+
+          <p>
+            Preferences are persisted to Firestore so they survive across sessions and
+            devices. We also fixed a bug where settings were appearing twice on the page
+            due to a double-render in the data fetching flow.
+          </p>
+
+          <h3>Dark Mode</h3>
+          <p>
+            Dark mode support has been added across the app, including the settings page,
+            login page, and sign-up page. The <strong>Appearance</strong> section is
+            where users toggle it, and it also exposes an accent color picker and layout
+            controls (density and font size) so teams can tailor the look to their
+            preference. The preference is saved to Firestore alongside everything else.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Settings_Appearance_Dark.png"
+              alt="SwimIQ Settings — Appearance in dark mode"
+            />
+            <figcaption>
+              <b>Appearance Settings (Dark Mode)</b> &mdash; Color mode, accent color,
+              density, and font size controls &mdash; all fully themeable.
+            </figcaption>
+          </figure>
+
+          <h3>Collapsible Sidebar &amp; Notification Toggles</h3>
+          <p>
+            The sidebar can now be collapsed to save screen real estate, which is
+            especially useful on smaller monitors or when coaches want to focus on a
+            single view. Notification controls have also been added to the Settings page,
+            with separate toggles for in-app and email notifications.
+          </p>
+
+          <hr />
+
+          <h2>Practice Builder Improvements</h2>
+          <p>
+            The Practice Builder received several quality-of-life improvements this
+            sprint. Drag-and-drop has been refined and extended &mdash; sets within a
+            practice can be reordered, and now entire <em>sections</em> can be dragged
+            to a new position as well. The interaction is noticeably cleaner and more
+            polished than before.
+          </p>
+          <p>
+            Coaches can now add <strong>comments to individual sets</strong> via the
+            new &ldquo;+ Add Comment&rdquo; button visible beneath each set row,
+            which is useful for coaching cues or notes on a specific interval. The
+            section yardage display has also been relocated to a more intuitive position
+            in the UI (bottom-right of each section card), and a bug affecting how
+            rounds were calculated has been resolved.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Practice_Builder.png"
+              alt="SwimIQ Practice Builder with comment button and live PDF preview"
+            />
+            <figcaption>
+              <b>Practice Builder</b> &mdash; The updated builder with per-set comment
+              support, section-level drag handles, per-section yardage, and a live PDF
+              preview that updates as you type.
+            </figcaption>
+          </figure>
+
+          <hr />
+
+          <h2>Meet Simulator &mdash; MVP Launch</h2>
+          <p>
+            This was the feature our client specifically requested after the Sprint One
+            demo, and we shipped it. The Meet Simulator lets coaches configure a
+            hypothetical meet, run it against real historical time data, and see
+            projected scored results. Setup is a guided five-step wizard.
+          </p>
+
+          <h3>Step 1: Meet Format</h3>
+          <p>
+            The first step lets coaches name the simulation and configure the top-level
+            meet parameters: gender division, course (SCY / SCM / LCM), and meet type
+            (Dual, Invitational, or Championship). Toggles control whether relay events
+            are included and whether projected/final times or seed times are used as
+            the primary time source.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Simulator_Format.png"
+              alt="Meet Simulator — Step 1: Meet Format"
+            />
+            <figcaption>
+              <b>Step 1 &mdash; Meet Format</b> &mdash; Configure gender division,
+              course, meet type, relay inclusion, and time source.
+            </figcaption>
+          </figure>
+
+          <h3>Step 2: Scoring Rules</h3>
+          <p>
+            Step two exposes full control over scoring. Coaches can pick a standard
+            preset (Dual, Invitational, or Championship) or define a custom ruleset.
+            The form lets you set max individual and relay events per swimmer, max
+            scoring entries per team, the number of places that score, and the exact
+            points awarded per place for both individual and relay events.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Simulator_Scoring.png"
+              alt="Meet Simulator — Step 2: Scoring Rules"
+            />
+            <figcaption>
+              <b>Step 2 &mdash; Scoring Rules</b> &mdash; Standard presets or fully
+              custom points arrays, swimmer limits, and scoring entry caps.
+            </figcaption>
+          </figure>
+
+          <h3>Step 3: Events</h3>
+          <p>
+            The events step presents a full catalogue of individual and relay events
+            split into two panels: a checklist on the left to select events, and a
+            live &ldquo;Meet Order&rdquo; list on the right that updates as events
+            are checked. Coaches can reorder events in the meet order using the up/down
+            arrows on each row.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Simulator_Events.png"
+              alt="Meet Simulator — Step 3: Events"
+            />
+            <figcaption>
+              <b>Step 3 &mdash; Events</b> &mdash; Select from the full event
+              catalogue and arrange the meet order with drag-free up/down controls.
+            </figcaption>
+          </figure>
+
+          <p>
+            Steps 4 and 5 handle team and athlete assignments and a final review before
+            the simulation runs. Under the hood, a <code>scoring.js</code> engine
+            handles points calculation, <code>validation.js</code> enforces event
+            eligibility rules, and <code>events.js</code> defines the full event list.
+            Draft simulations are persisted so coaches can save work and return later.
+          </p>
+          <p>
+            The backend grew to match &mdash; new API endpoints in
+            <code>swim-iq-backend/app/main.py</code> load <code>.cl2</code> meet result
+            files and return scored, ranked results. A large batch of historical
+            <code>.cl2</code> files from Augustana, CCIW, and opponent meets spanning
+            2024&ndash;2026 gives the simulator a realistic performance model to draw from.
+          </p>
+
+          <hr />
+
+          <h2>Communication Layer</h2>
+          <p>
+            A full communication system has been added to the web app. The
+            <strong>Announcements</strong> page doubles as the hub for surveys and
+            team-wide posts. Coaches can create a new survey (which athletes answer
+            directly from a notification) or post a plain announcement. Both show up in
+            the same feed so nothing gets buried.
+          </p>
+
+          <figure class="img-lg">
+            <img
+              src="../assets/week9/SwimIQ_Announcements.png"
+              alt="SwimIQ Announcements page with open survey and recent announcements"
+            />
+            <figcaption>
+              <b>Announcements &amp; Surveys</b> &mdash; Open surveys with live response
+              counts sit above recent announcements in a single unified feed.
+            </figcaption>
+          </figure>
+
+          <p>
+            Real-time direct messaging between users is handled by
+            <code>MessagesPage.jsx</code> and a <code>messages.js</code> Firebase
+            library. Supporting all of this is a new
+            <code>NotificationsContext.jsx</code> that manages in-app notification state
+            across the app, surfacing messages, announcements, and survey invites in
+            the notification bell at the top of every page.
+          </p>
+
+          <figure class="img-sm">
+            <img
+              src="../assets/week9/SwimIQ_Notifications.png"
+              alt="SwimIQ in-app notifications dropdown in Athlete Preview mode"
+            />
+            <figcaption>
+              <b>Notifications Panel</b> &mdash; The bell icon surfaces messages,
+              announcements, and survey invites in real time. The &ldquo;Athlete
+              Preview&rdquo; badge shows a coach is viewing the app from an
+              athlete&rsquo;s perspective.
+            </figcaption>
+          </figure>
+
+          <hr />
+
+          <h2>Authentication Improvements</h2>
+          <p>
+            The sign-up and profile setup flows now collect <strong>first name, last
+            name, and date of birth</strong>. This data feeds into athlete profiles and
+            will eventually be used for age-group event eligibility in the simulator.
+          </p>
+          <p>
+            We also fixed a bug that was preventing email/password login from working
+            correctly (Google Auth was fine, but standard login was silently failing).
+            That is now resolved. The login and sign-up pages have also been updated to
+            fully support dark mode.
+          </p>
+          <p>
+            A small but noticeable label fix: the tab previously mislabeled as
+            &ldquo;Roster&rdquo; is now correctly labeled <strong>&ldquo;Search
+            Athlete Profiles.&rdquo;</strong>
+          </p>
+
+          <hr />
+
+          <h2>Mobile App</h2>
+
+          <h3>Initial Setup</h3>
+          <p>
+            The mobile app has been bootstrapped as a new Expo/React Native project at
+            <code>apps/mobile/</code> inside the monorepo. The iOS native project is
+            fully configured with an <code>AppDelegate.swift</code>, entitlements, a
+            splash screen storyboard, <code>Info.plist</code>, a privacy manifest, and
+            an app icon. A <code>scripts/dev-ios.sh</code> script streamlines the iOS
+            development workflow so any team member can spin up the simulator quickly.
+          </p>
+
+          <h3>Heart Rate Monitoring</h3>
+          <p>
+            Heart rate is one of SwimIQ&rsquo;s core differentiators, and this sprint
+            we built out three distinct data sources for it on mobile:
+          </p>
+          <ul>
+            <li>
+              <strong>HealthKit (iOS)</strong> &mdash; <code>HealthKitService.ts</code>
+              reads heart rate data directly from Apple Health on iPhone.
+            </li>
+            <li>
+              <strong>HealthConnect (Android)</strong> &mdash;
+              <code>HealthConnectService.ts</code> provides the equivalent integration
+              for Android devices.
+            </li>
+            <li>
+              <strong>BLE Heart Rate Monitors</strong> &mdash;
+              <code>BleHeartRateService.ts</code> connects directly to Bluetooth Low
+              Energy chest strap monitors, which is critical for in-pool use since
+              phones cannot be in the water.
+            </li>
+          </ul>
+          <p>
+            Heart rate sessions are saved to Firebase and retained for two weeks. Two
+            dedicated screens surface this data: <strong>heart-rate.tsx</strong> for
+            athletes viewing their own history, and <strong>team-hr.tsx</strong> for
+            coaches monitoring the whole team with aggregated HR insights. On the
+            backend, <code>heart_rate_tasks.py</code> handles async ingestion and
+            <code>polar.py</code> adds Polar monitor support via their API.
+          </p>
+
+          <h3>Role-Based Access Control</h3>
+          <p>
+            Athletes and coaches see fundamentally different apps. A new
+            <code>ViewContext.tsx</code> manages the current role and view mode
+            (coach vs. athlete) throughout the mobile app. Athlete accounts are locked
+            out of coach-only pages &mdash; lift builder, meet builder, roster
+            management, file upload &mdash; and redirected appropriately. The same
+            &ldquo;Switch to athlete view&rdquo; toggle available on the web settings
+            page lets coaches preview the athlete experience on mobile without a
+            separate account.
+          </p>
+
+          <h3>Schedule &amp; Dashboard</h3>
+          <p>
+            The schedule screen received improvements to event display and navigation,
+            and the dashboard layout has been streamlined for both coach and athlete
+            views to reduce clutter and surface the most relevant information first.
+          </p>
+
+          <hr />
+
+          <h2>What&rsquo;s Next</h2>
+          <p>
+            We&rsquo;re entering the final stretch of the semester. The major items on
+            the horizon include:
+          </p>
+          <ul>
+            <li>
+              <strong>AI Set Designer:</strong> A Gemini-powered practice set generator
+              to help coaches build creative workouts faster.
+            </li>
+            <li>
+              <strong>Meet Simulator Optimization:</strong> A lineup optimization
+              algorithm to suggest the best athlete-event assignments for a given meet.
+            </li>
+            <li>
+              <strong>Mobile Polish:</strong> Continue refining the mobile experience,
+              particularly the athlete-facing flows and heart rate visualizations.
+            </li>
+            <li>
+              <strong>Production Hardening:</strong> Input validation, auth guardrails,
+              and security review before we hand the app off to our client.
+            </li>
+          </ul>
+          <p>
+            Two weeks of heavy lifting have put us in a great position heading into
+            the final sprint. See you next week!
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        SwimIQ &mdash; a senior capstone project &bull;
+        <a
+          href="https://github.com/primomoreno23-droid/SwimIQ.github.io"
+          target="_blank"
+          rel="noopener"
+          >View on GitHub</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
