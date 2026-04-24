@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Week 11 SwimIQ dev log: Sprint 2 demo success, HealthKit bug resolution, Android heart rate support, and the path to feature refinement and deployment." />
+  <title>
+    Week 11: Sprint 2 Demo, HealthKit Fixes &amp; Android HR Support &mdash; SwimIQ Dev Blog
+  </title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="../index.html">
+        <div class="site-header__logo-mark">S</div>
+        <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
+      </a>
+      <nav>
+        <ul class="site-header__nav">
+          <li><a href="../index.html">All Posts</a></li>
+          <li>
+            <a href="https://github.com/primomoreno23-droid/SwimIQ.github.io" target="_blank" rel="noopener">GitHub</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <article class="article">
+      <a class="article__back" href="../index.html">Back to all posts</a>
+
+      <div class="article__meta">
+        <span class="article__week-badge">Week 11</span>
+        <span class="article__date">April 23, 2026</span>
+      </div>
+
+      <h1 class="article__title">
+        Week 11: Sprint 2 Demo, HealthKit Fixes &amp; Android Heart Rate Support
+      </h1>
+
+      <p class="article__byline"><strong>Author:</strong> Ian Palmroos</p>
+
+      <div class="article__body">
+        <p>
+          Week 11 has been a pivotal period for SwimIQ. Following a successful Sprint 2 demo,
+          our team has shifted focus from rapid feature expansion to deep refinement and
+          cross-platform parity. We've resolved critical native integration bugs and are
+          now moving towards a production-ready state.
+        </p>
+
+        <hr />
+
+        <h2>Sprint 2 Demo Success</h2>
+        <p>
+          The Sprint 2 demos were a major milestone for us. We were able to showcase the core
+          workflow of SwimIQ from practice building to real-time communication. A major
+          highlight was showing off the mobile side of the app for the first time,
+          demonstrating initial heart rate integration and the athlete-facing dashboard.
+          The feedback was overwhelmingly positive, confirming that our current trajectory
+          aligns with the needs of both coaches and athletes.
+        </p>
+
+        <hr />
+
+        <h2>Resolving HealthKit & Android Integration</h2>
+        <h3>Apple HealthKit Bug Fix</h3>
+        <p>
+          One of the primary challenges we faced earlier in the sprint was a persistent bug
+          with pulling heart rate data from Apple HealthKit. The synchronization logic was
+          failing to correctly map the high-frequency data points to our backend, causing
+          omissions in the athlete's history.
+        </p>
+        <p>
+          We are happy to report that this has been fully resolved. By refactoring our
+          native module bridging and improving the data serialization layer, heart rate
+          pulling is now seamless on iOS devices.
+        </p>
+
+        <figure
+          style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 32px auto; max-width: 800px;">
+          <div style="flex: 1; min-width: 250px; max-width: 380px;">
+            <img src="../assets/SwimIQWorkoutsUI.PNG" style="width: 100%; height: auto; border: 1px solid #e2e8ed;" />
+          </div>
+          <div style="flex: 1; min-width: 250px; max-width: 380px;">
+            <img src="../assets/SwimIQWorkoutsUISession.PNG"
+              style="width: 100%; height: auto; border: 1px solid #e2e8ed;" />
+          </div>
+          <figcaption
+            style="flex: 1 0 100%; text-align: center; margin-top: 12px; font-style: italic; font-size: 13px; color: #7a909f;">
+            Current workout UI and active session tracking.
+          </figcaption>
+        </figure>
+
+        <h3>Android Health Connect Support</h3>
+        <p>
+          With iOS stabilized, we have expanded our mobile capabilities by adding the
+          Android version of heart rate data pulling. This leverages Google's Health Connect
+          API, ensuring that Android users have the same high-quality data integration as
+          their iOS counterparts. This brings us one step closer to true cross-platform parity.
+        </p>
+
+        <h2>Infrastructure: Moving to Docker</h2>
+        <p>
+          To facilitate a smooth deployment and ensure environment consistency across our
+          team, we have officially switched to Docker. Containerizing the backend services
+          allows us to package our dependencies and configurations into a single, portable
+          unit. This move is critical for our final deployment strategy.
+        </p>
+
+        <hr />
+
+        <h2>The Path to Sprint 3: Feature Lock & Refinement</h2>
+        <p>
+          As of this week, SwimIQ is officially in Feature Lock. This means we are no
+          longer adding new broad features; instead, we are refining what we have built.
+          Our primary goals for the coming weeks are:
+        </p>
+        <ul>
+          <li><strong>Security Hardening:</strong> Implementing robust security features,
+            including enhanced authentication guards and data encryption at rest.</li>
+          <li><strong>UX Refinement:</strong> Smoothing out transitions, improving the
+            responsiveness of the analytics charts, and ensuring the mobile app feels
+            fluid and premium.</li>
+          <li><strong>Bug Squashing:</strong> Systematic testing to identify and resolve
+            bugs.</li>
+        </ul>
+
+        <p>
+          Our ultimate aim is to have a stable, production-ready version of the application
+          ready for deployment before the Sprint 3 deadline. We want the transition
+          from development to real-world use to be as smooth as possible for our users.
+        </p>
+
+        <hr />
+
+        <h2>Team News: Success at Hack Augie</h2>
+
+        <figure
+          style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 32px auto; max-width: 800px;">
+          <div style="flex: 1; min-width: 280px; max-width: 380px;">
+            <img src="../assets/SwimIQHackAugieRest.JPEG" style="width: 100%; height: auto;" />
+          </div>
+          <div style="flex: 1; min-width: 280px; max-width: 380px;">
+            <img src="../assets/SwimIQ_HackAugie_Primo.JPEG" style="width: 100%; height: auto;" />
+          </div>
+          <figcaption
+            style="flex: 1 0 100%; text-align: center; margin-top: 12px; font-style: italic; font-size: 13px; color: #7a909f;">
+            SwimIQ team at the HackAugie hackathon. (Left: Ian, Lucas, Tyler, Right: Primo)
+          </figcaption>
+        </figure>
+
+
+        <p>
+          Beyond our work on SwimIQ, the entire team participated in Hack Augie this past
+          weekend. It was a high-energy event, and we are proud to share that all our members
+          received recognition for their projects. Above are images of the SwimIQ team members and thier groups for the
+          hackathon.
+        </p>
+        <ul>
+          <li><strong>Lucas, Ian, and Tyler:</strong> Received Honorable Mentions in the
+            Health Track and were recognized in the challenge for Best Use of AI with
+            their project, <em>AirVita</em>.</li>
+          <li><strong>Primo:</strong> Won the challenge for Best Data Insight with
+            his project, <em>F.I.R.E.</em></li>
+        </ul>
+        <p>
+          We all thoroughly enjoyed the hackathon experience and the opportunity to build
+          something cool in such a short timeframe. Now, we are re-energized and ready to
+          jump back into the final stages of SwimIQ development!
+        </p>
+
+        <hr />
+
+        <p>
+          We are incredibly proud of the progress made this sprint. The foundation is solid,
+          the features are locked, and the finish line is in sight. Stay tuned for our
+          deployment update!
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      SwimIQ &mdash; a senior capstone project &bull;
+      <a href="https://github.com/primomoreno23-droid/SwimIQ.github.io" target="_blank" rel="noopener">View on
+        GitHub</a>
+    </p>
+  </footer>
+</body>
+
+</html>

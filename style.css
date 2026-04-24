@@ -446,8 +446,6 @@ img {
 .article__body figure.img-sm {
   max-width: 400px;
 }
-
-
 /* ── Tech tag pills ─────────────────────────────────────────── */
 .tech-tags {
   display: flex;
