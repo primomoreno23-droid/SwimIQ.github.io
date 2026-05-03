@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Week 12 SwimIQ dev log: Announcing our upcoming name pivot to SwimSphere, multi-tenant Firestore architecture refactor, deep security hardening, and major bug squashing." />
+    <title>
+        Week 12: Name Pivot, Multi-Tenant Architecture &amp; Security Hardening &mdash; SwimIQ Dev Blog
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-header__logo" href="../index.html">
+                <div class="site-header__logo-mark">S</div>
+                <span class="site-header__logo-text">SwimIQ <span>Dev Blog</span></span>
+            </a>
+            <nav>
+                <ul class="site-header__nav">
+                    <li><a href="../index.html">All Posts</a></li>
+                    <li>
+                        <a href="https://github.com/primomoreno23-droid/SwimIQ.github.io" target="_blank"
+                            rel="noopener">GitHub</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <article class="article">
+            <a class="article__back" href="../index.html">Back to all posts</a>
+
+            <div class="article__meta">
+                <span class="article__week-badge">Week 12</span>
+                <span class="article__date">May 3, 2026</span>
+            </div>
+
+            <h1 class="article__title">
+                Week 12: Name Pivot, Multi-Tenant Architecture &amp; Security Hardening
+            </h1>
+
+            <p class="article__byline"><strong>Author:</strong> Tyler Leslie</p>
+
+            <div class="article__body">
+                <p>
+                    Welcome to our Week 12 update! Following our transition into "Feature Lock" last week,
+                    our team has shifted entirely from building new capabilities to refining and securing
+                    the ones we already have. This week brings a significant announcement regarding our
+                    brand identity, alongside deep technical updates on our backend architecture,
+                    multi-tenant security rules, and critical bug fixes as we close in on our Sprint 3 deadline.
+                </p>
+
+                <figure
+                    style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 32px auto; max-width: 800px;">
+                    <div style="flex: 1; min-width: 280px; max-width: 600px;">
+                        <img src="../assets/SwimIQ_Competition.jpeg"
+                            style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+                            alt="SwimIQ Competition" />
+                    </div>
+                    <figcaption
+                        style="flex: 1 0 100%; text-align: center; margin-top: 12px; font-style: italic; font-size: 13px; color: #7a909f;">
+                        The competitive drive continues to fuel our development as we approach Sprint 3.
+                    </figcaption>
+                </figure>
+
+                <hr />
+
+                <h2>The Name Change Pivot</h2>
+                <p>
+                    Since the start of our SI project, we have been working under the name SwimIQ.
+                    It’s a name that perfectly encapsulated our vision: bringing intelligent, data-driven
+                    analytics to swim team management. However, as we prepare for a broader release and
+                    potential deployment beyond our academic environment, we conducted a thorough audit
+                    and discovered that another application is already published and operating under the
+                    "SwimIQ" name.
+                </p>
+                <p>
+                    While it is never easy to abandon a name you've grown attached to, pivoting now is a
+                    strategic necessity. Proceeding with a contested name introduces unnecessary trademark
+                    risks and creates immediate confusion for coaches and athletes trying to find our platform.
+                    We are currently evaluating new names that capture our mission of comprehensive team
+                    management and analytics. Right now, we are leaning heavily towards <strong>SwimSphere</strong>,
+                    but we haven't made a final decision just yet.
+                </p>
+                <p>
+                    For the time being, you will still see "SwimIQ" across our GitHub Pages dev blog,
+                    repository URLs, and existing documentation. Once the new name is finalized, we will
+                    execute a coordinated migration encompassing our domain names, Firebase project
+                    configurations, repository names, and all frontend UI branding.
+                </p>
+
+                <hr />
+
+                <h2>Security Hardening &amp; Multi-Tenant Architecture</h2>
+                <p>
+                    In Week 11, we outlined our goals for security hardening. This week, we translated
+                    those goals into concrete backend architectural changes, fundamentally reshaping how
+                    data is accessed and isolated.
+                </p>
+
+                <h3>Migrating to a Multi-Tenant Firestore Schema</h3>
+                <p>
+                    To guarantee data isolation between different swim organizations, we completely overhauled
+                    our Firestore database schema. We transitioned from flat, global collections to a strict
+                    hierarchical structure centered around the <code>TeamData/{team_id}</code> path. All practices,
+                    meets, rosters, and team-specific events are now strictly nested under their respective
+                    team document.
+                </p>
+                <p>
+                    This multi-tenant approach inherently prevents data collisions. We updated our backend
+                    read/write utilities and our Python FastAPI data processing pipeline to enforce
+                    <code>team_id</code> propagation on every single request. For cross-team backend analytics,
+                    we implemented secure <code>collection_group</code> queries, ensuring global data access is
+                    restricted solely to internal machine learning data loaders.
+                </p>
+
+                <figure
+                    style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 32px auto; max-width: 800px;">
+                    <div style="flex: 1; min-width: 250px; max-width: 600px;">
+                        <div
+                            style="width: 100%; height: 250px; background-color: #f8f9fa; border: 1px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: monospace;">
+                            [ Insert Firestore Schema Diagram Here ]
+                        </div>
+                    </div>
+                    <figcaption
+                        style="flex: 1 0 100%; text-align: center; margin-top: 12px; font-style: italic; font-size: 13px; color: #7a909f;">
+                        Visual representation of our new TeamData/{team_id} hierarchical structure.
+                    </figcaption>
+                </figure>
+
+                <h3>Enhanced Authentication &amp; Firestore Security Rules</h3>
+                <p>
+                    With the new schema in place, we implemented rigorous Firestore Security Rules. Previously,
+                    some routes relied on frontend implicit checks. Now, all user-specific and team-specific
+                    routes are locked down at the database level.
+                </p>
+                <ul>
+                    <li><strong>Role-Based Access Control (RBAC):</strong> A user's authentication token is
+                        now cross-referenced with their team affiliation and role. Coaches have read/write
+                        access to their <code>TeamData/{team_id}</code>, while athletes have read-only access
+                        to specific subcollections and read/write access only to their own profiles within
+                        the global <code>UserData/</code> collection.</li>
+                    <li><strong>Frontend Route Protection:</strong> We mirrored these backend rules in our
+                        React application, ensuring that unauthenticated users are immediately redirected to
+                        the login flow, and athletes cannot navigate to coach-exclusive dashboard routes.</li>
+                </ul>
+
+                <h3>Data Encryption at Rest</h3>
+                <p>
+                    Protecting sensitive health data, such as the high-frequency Apple HealthKit and Android
+                    Health Connect heart rate logs we integrated last sprint, is non-negotiable. We verified
+                    that all data residing in Firestore is encrypted at rest by default using Google's
+                    server-side encryption. This ensures an impenetrable layer of privacy for our athletes.
+                </p>
+
+                <hr />
+
+                <h2>Bug Squashing &amp; UX Refinement</h2>
+                <p>
+                    Alongside security, we've actively tackled several critical bugs that were negatively
+                    impacting the user experience. As we approach our final deployment, smoothing out these
+                    rough edges is a top priority:
+                </p>
+
+                <h3>Fixing the Firebase Sign-Up Flow</h3>
+                <p>
+                    We resolved a persistent <code>auth/invalid-credential</code> error that was occurring
+                    during the user sign-up flow. The issue was traced to how our frontend was handling
+                    state for users who already had existing Firebase Auth accounts but hadn't fully
+                    completed their profile setup. By improving our error handling logic and adding
+                    graceful fallbacks, the onboarding process is now much more robust.
+                </p>
+
+                <h3>Synchronizing Notification States</h3>
+                <p>
+                    We also fixed an annoying desync issue with in-app notifications. Previously, reading
+                    a message in the dedicated message thread wouldn't always update the notification dropdown
+                    in the navigation bar. We unified the state management so that marking a message as read
+                    correctly clears the unread badge globally across the UI, providing a much more cohesive
+                    feel.
+                </p>
+
+                <figure
+                    style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 32px auto; max-width: 800px;">
+                    <div style="flex: 1; min-width: 250px; max-width: 380px;">
+                        <div
+                            style="width: 100%; height: 200px; background-color: #f8f9fa; border: 1px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: monospace;">
+                            [ Insert Notification UI Before ]
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; max-width: 380px;">
+                        <div
+                            style="width: 100%; height: 200px; background-color: #f8f9fa; border: 1px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: monospace;">
+                            [ Insert Notification UI After ]
+                        </div>
+                    </div>
+                    <figcaption
+                        style="flex: 1 0 100%; text-align: center; margin-top: 12px; font-style: italic; font-size: 13px; color: #7a909f;">
+                        The synchronized notification unread badge state across the application.
+                    </figcaption>
+                </figure>
+
+                <hr />
+
+                <p>
+                    With our data architecture secured, bugs being systematically squashed, and our rebranding
+                    strategy taking shape, the finish line is clearly in sight. In the coming week, we will
+                    focus heavily on finalizing our UI branding updates and running end-to-end testing.
+                    Stay tuned for our Sprint 3 final update!
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>
+            SwimIQ &mdash; a senior capstone project &bull;
+            <a href="https://github.com/primomoreno23-droid/SwimIQ.github.io" target="_blank" rel="noopener">View on
+                GitHub</a>
+        </p>
+    </footer>
+</body>
+
+</html>
